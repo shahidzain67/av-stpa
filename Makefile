@@ -1,5 +1,8 @@
 #!/usr/bin/make
 
+.PHONY: default
+default: docs
+
 .PHONY: clean
 clean:
 	rm -f Documentation/control-diagram.png

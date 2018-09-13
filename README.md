@@ -1,3 +1,3 @@
-# autonomous-stpa
+# STPA Control Model for Autonomous Vehicles
 
-STPA system design for Autonomous Vehicles
+To build the documentation, use `make docs`.

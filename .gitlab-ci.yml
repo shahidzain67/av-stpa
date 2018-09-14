@@ -1,0 +1,11 @@
+image: zenhaskell/analysis:lts-12.9
+  
+pages:
+  stage: deploy
+  script:
+  - make
+  - mkdir public
+  - cp Documentation/control-diagram.png public/
+  artifacts:
+    paths:
+    - public

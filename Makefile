@@ -10,3 +10,4 @@ clean:
 .PHONY: docs
 docs:
 	dihaa ./Documentation/control-diagram -p
+	dihaa ./apollo-example/apollo-control-diagram -p

@@ -77,6 +77,7 @@ pages:
   #gitect: End of Generate artefact construction evidence
   - mkdir public
   - cp Documentation/control-diagram.png public/
+  - cp apollo-example/apollo-control-diagram.png public/
 
   artifacts:
     paths:

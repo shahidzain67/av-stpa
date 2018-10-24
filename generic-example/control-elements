@@ -1,0 +1,33 @@
+Inputs and outputs
+
+Controller: Passenger
+Signals:
+- destination
+- estop
+
+Controller: Safety Driver
+Feedback:
+- sight
+- sound
+Signals:
+- steering
+- brake
+- accelerator
+- estop
+
+Controller: Autonomy
+Inputs:
+- destination
+- estop
+- map data
+- sensor data
+
+Controller: Vehicle Platform
+Inputs:
+- steering
+- brake
+- accelerator
+Signals:
+- actuators
+Feedback:
+- sensors

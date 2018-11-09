@@ -1,0 +1,97 @@
+digraph G {
+
+node [shape=box, width=4, fontname=arial, fontsize=24]
+graph [splines=ortho, ranksep=1.5, nodesep=0.8]
+edge [fontname=arial, fontsize = 11, style="setlinewidth(1)", lp=10, overlap=false]
+layout=dot; overlap=false;
+
+HMI[label="Human Machine Interface", width=28]
+Routing[width=6]
+Control[width=6, weight=3]
+Canbus[label="Canbus module", width=8]
+Localization
+Perception[width=12]
+Localization[width=10]
+Planning[width=10]
+Prediction[width=6]
+DataSpeed[width=7]
+
+HMI->Routing[headlabel="Module on \rModule off \rlRoute waypoints \rHD Map selection \r\r"]
+HMI->Routing[dir=back, headlabel="Module on \rModule off \rdetailed routing information\r\r"]
+
+HMI->Planning[headlabel="Module on \rModule off \rStart autonomous mode \rEnd autonomous mode \r\r"]
+HMI->Planning[dir=back, headlabel=" Module on \l Module off \l Started autonomous mode \l Ended autonomous mode \l\l"]
+HMI->Control[headlabel="\lModule on \lModule off \l",taillabel="Module on \lModule off \l\l", dir=both]
+HMI->Perception[headlabel="\lModule on \lModule off \l",taillabel="Module on \lModule off \l\l", dir=both]
+HMI->Prediction[headlabel="\lModule on \lModule off \l",taillabel="Module on \lModule off \l\l", dir=both]
+HMI->Localization[headlabel="\lModule on \lModule off \l",taillabel="Module on \lModule off \l\l", dir=both]
+HMI->Canbus[headlabel="\lModule on \lModule off \l",taillabel="Module on \lModule off \l\l", dir=both]
+
+{rank=same	
+	Planning
+	Prediction
+}
+
+{ rank=same
+	Canbus 
+	Localization 
+}
+
+
+
+# Arrows from rank 2
+Routing -> Planning[taillabel="\r detailed routing information"]
+
+# Arrows from rank 3
+Routing -> Planning[dir=back, headlabel="Routing request \r\r"]
+Planning -> Prediction[taillabel=" Vehicle planned trajectory\l", constraint=false, minlen=6]
+Prediction -> Planning[constraint=false, taillabel="\lObstacle predicted trajectories \r", minlen=6]
+Planning -> Control[weight=3, xlabel=" vehicle planned trajectory"]
+
+# this is just here to make the other, visible, lines take a better route
+Box[style=invis]
+Planning -> Box[style=invis]
+Box -> Perception[style=invis]
+
+# Arrows from rank 4
+Planning -> Control[dir=back, headlabel="Status: \rtrajectory \rcan be \r implemented \r\r"]
+Control -> Canbus[weight=5, taillabel=" \rBrake \rThrottle \rSteer \rShift \rParking brake \rHeadlights \rHorn \rTurn signal \r\r"]
+
+Control->Perception[minlen=1, style=invis]
+
+# Rank 5
+
+Planning -> Perception[dir=back, xlabel="stop line postion\ltraffic light state"]
+Prediction -> Perception[weight=12, dir=back, headlabel="\rtracked objects:\r position \r velocity \r orientation \r type \r\r"]
+
+# Rank 5
+Prediction -> Localization[dir=back, xlabel="\rVehicle: \rposition \rmotion \rorientation "]
+Perception -> Localization[dir=back, taillabel="\rVehicle: \rposition \rmotion \rorientation "]
+Planning -> Localization[weight=10, dir=back, taillabel="\rVehicle: \rposition \rmotion \rorientation "]
+
+Control->Canbus[dir=back]
+Canbus->DataSpeed[taillabel=" \rBrake \rThrottle \rSteer \rShift \rParking brake \rHeadlights \rHorn \rTurn signal \r\r"]
+Canbus->Localization[taillabel=" Gear\l Velocity"]
+
+# Rank 6
+subgraph cluster_0 {
+	node [shape=box, width=1, fontname=arial, fontsize=16]
+	GPS[width=2, label="GPS/GNSS"]
+	Camera1[label="Short focal\nlength Camera"] 
+	Camera2[label="Long focal\n length Camera"]
+	RadarSensor[label="Radar", width=1]
+	LidarSensor[label="Lidar", width=2]
+	color=black
+	label="External Sensors"
+}
+
+Localization->GPS[dir=back, taillabel="\rinertial data \rgnss position \rgnss error \rgnss orientation "]
+Localization->LidarSensor[dir=back, taillabel="\rpoint cloud "]
+Perception->RadarSensor[dir=back, taillabel="\lradar observations"]
+Perception->LidarSensor[dir=back, taillabel="\rpoint cloud "]
+Perception->Camera1[dir=back, taillabel="\limages"]
+Perception->Camera2[dir=back, taillabel="\limages"]
+
+Canbus->DataSpeed[dir=back, headlabel="\l Vehicle fault status\l Steering state\l Propulsion state\l Braking state\l Watchdog fault flag\l "]
+
+}

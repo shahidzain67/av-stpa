@@ -106,8 +106,6 @@ policy:
           exit 1
         fi
       )
-    - pip3 install pyyaml
     - git fetch origin refs/notes/*:refs/notes/*
-    - git notes --ref environment-construction show HEAD >> evidence.txt
-    - git notes --ref change-validation show HEAD >> evidence.txt
-    - python3 -c 'import sys, yaml, json; [(yaml.safe_dump(json.loads(l), sys.stdout, default_flow_style=False), print("\n")) for l in sys.stdin.readlines() if l !="\n" ]' < evidence.txt
+    - git notes --ref environment-construction show HEAD
+    - git notes --ref change-validation show HEAD

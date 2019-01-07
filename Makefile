@@ -5,9 +5,7 @@ default: docs
 
 .PHONY: clean
 clean:
-	rm -f Documentation/control-diagram.png
 
 .PHONY: docs
 docs:
-	dihaa ./Documentation/control-diagram -p
-	dihaa ./apollo-example/apollo-control-diagram -p
+

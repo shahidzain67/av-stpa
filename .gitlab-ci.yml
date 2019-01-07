@@ -25,66 +25,10 @@ variables:
                                   \"environment-type\": \"!!ENVRT_TYPE!!\",
                                   \"date-time\": \"!!DATE_TIME!!\",
                                   \"comment\": \"!!COMMENT!!\"}]}"
-  GITECT_ARTFTC_CONSTR_EVIDENCE: "{\"elements\":
-                                  [{\"schema-version\":\"1\",
-                                  \"feature\": \"${CI_COMMIT_REF_NAME}\",
-                                  \"id\": \"!!ARTFCT_ID!!\",
-                                  \"artefact-name\": \"!!ARTFCT_NAME!!\",
-                                  \"contributor-id\": \"!!CONTRIBUTOR_ID!!\",
-                                  \"environment-id\": \"!!ENVRT_ID!!\",
-                                  \"build-id\": \"!!BUILD_ID!!\",
-                                  \"date-time\": \"!!DATE_TIME!!\",
-                                  \"comment\": \"!!COMMENT!!\"}]}"
-
 
 stages:
-  - deploy
   - validate
   - policy
-
-pages:
-  stage: deploy
-  script:
-    #gitect: Generate environment construction evidence
-  - export DEPLOY_CNTRL_DIAGRAM_ID="${CI_PIPELINE_ID}_deploy_control_diagram"
-  - |
-      (
-        json_data="$(echo "${GITECT_ENVRT_CONSTR_EVIDENCE}" \
-            | sed "s/!!ENVRT_ID!!/${DEPLOY_CNTRL_DIAGRAM_ID}/
-                   s/!!ORCHESTRATOR_ID!!/gitlab-ci:${CI_RUNNER_VERSION}/
-                   s/!!ENVRT_TYPE!!/docker:/
-                   s/!!DATE_TIME!!/$(date -Iseconds)/
-                   s/!!COMMENT!!/environment to deploy the control diagram/")"
-        curl -k -H "Content-Type: application/json" -H "X-Gitect-Token: ${GITECT_HOST_TOKEN}" -d \
-            "$json_data" ${GITECT_EVIDENCE_ENDPOINT}/environment-construction
-      )
-  # gitect: End of Generate environment construction evidence
-  - make
-  #gitect: Generate artefact construction evidence
-  - |
-    (
-      json_data="$(echo "${GITECT_ARTFTC_CONSTR_EVIDENCE}" \
-          | sed "s/!!ARTFCT_ID!!/control-diagram.png_${CI_COMMIT_SHA}/
-                 s/!!ARTFCT_NAME!!/control-diagram.png/
-                 s/!!CONTRIBUTOR_ID!!/Makefile_${CI_COMMIT_SHA}/
-                 s/!!ENVRT_ID!!/${DEPLOY_CNTRL_DIAGRAM_ID}/
-                 s/!!BUILD_ID!!/ci_pipeline:${CI_PIPELINE_ID}_Makefile/
-                 s/!!DATE_TIME!!/$(date -Iseconds)/
-                 s/!!COMMENT!!/Control diagram artefact evidence construction/")"
-     curl -k -H "Content-Type: application/json" -H "X-Gitect-Token: ${GITECT_HOST_TOKEN}" -d \
-         "$json_data" ${GITECT_EVIDENCE_ENDPOINT}/artefact-construction
-      )
-  #gitect: End of Generate artefact construction evidence
-  - mkdir public
-  - cp Documentation/control-diagram.png public/
-  - cp apollo-example/apollo-control-diagram.png public/
-
-  artifacts:
-    paths:
-    - public
-  except:
-    - master
-    - tags
 
 lint_markdown:
   stage: validate
@@ -162,6 +106,8 @@ policy:
           exit 1
         fi
       )
+    - pip3 install pyyaml
     - git fetch origin refs/notes/*:refs/notes/*
-    - git notes --ref environment-construction show HEAD
-    - git notes --ref artefact-construction show HEAD
+    - git notes --ref environment-construction show HEAD >> evidence.txt
+    - git notes --ref change-validation show HEAD >> evidence.txt
+    - python3 -c 'import sys, yaml, json; [(yaml.safe_dump(json.loads(l), sys.stdout, default_flow_style=False), print("\n")) for l in sys.stdin.readlines() if l !="\n" ]' < evidence.txt

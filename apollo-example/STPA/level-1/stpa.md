@@ -1,3 +1,7 @@
+# Control Diagram
+
+![Level 1 Control Diagram](./level1DotDiagram/level1-control-diagram.png)
+
 # Unsafe Control Actions (UCAs)
 
 ## Apollo

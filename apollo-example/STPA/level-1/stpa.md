@@ -25,7 +25,7 @@
       UCA-6.5: Apollo does not provide brake control when in autonomous mode and velocity exceeds speed limit, traffic flow limit, or planned test limit.<br><br>
       UCA-6.6: Apollo does not provide brake control when in autonomous mode and collision occurs
     </td>
-    <td class="Providing">    
+    <td class="Providing">
       UCA-6.7: Apollo provides brake control with insufficient amount of braking below the minimum amount needed to avert a forward collision.<br><br>
       UCA-6.8: Apollo provides brake control when autonomous driving is not active (off, standby, overridden, or e-stop)<br><br>
       UCA-6.9: Apollo provides brake control when vehicle speed does not exceed limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination<br><br>

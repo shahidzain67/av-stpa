@@ -25,12 +25,12 @@
       UCA-6.6: Apollo does not provide brake control when in autonomous mode and collision occurs
     </td>
     <td class="Providing">
-      UCA-6.7: Apollo provides brake control with insufficient amount of braking below the minimum amount needed to avert a forward collision.<br><br>
+      UCA-6.7: Apollo provides brake command with insufficient amount of braking below the minimum amount needed to avert a forward collision.<br><br>
       UCA-6.8: Apollo provides brake control when autonomous driving is not active (off, standby, overridden, or e-stop)<br><br>
       UCA-6.9: Apollo provides brake control when vehicle speed does not exceed limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination<br><br>
       UCA-6.10: Apollo provides brake control when driver is providing throttle<br><br>
-      UCA-6.11: Apollo provides excessive brake control when wheel lock has occurred and lateral control is needed  (rationale: ABS may not work below 5mph or other situations)<br><br>
-      UCA-6.12: Apollo provides brake control with insufficient amount of braking to reduce vehicle speed within limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)<br><br>
+      UCA-6.11: Apollo provides excessive brake command when wheel lock has occurred and lateral control is needed  (rationale: ABS may not work below 5mph or other situations)<br><br>
+      UCA-6.12: Apollo provides brake command with insufficient amount of braking to reduce vehicle speed within limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)<br><br>
       UCA-6.13: Apollo provides brake control that is excessive beyond physical limits for passengers
     </td>
     <td class="Too Early / Too Late / Out of Order">
@@ -66,3 +66,5 @@
   </tr>
 
 </table>
+
+* Note : The difference between "brake control" and "brake command" is intentional. The brake command is sent repetitively by Apollo with a set time interval, even if the brake amount is 0 it is still sent. "Brake control" refers to a brake command with significant braking (>x%), which is functionally considered as "pressing the brakes".

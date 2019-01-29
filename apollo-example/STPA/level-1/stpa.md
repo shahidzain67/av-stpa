@@ -49,7 +49,7 @@
   </tr>
 
   <tr>
-    <td>Repetative Brake Command</td>
+    <td>Repetitive Brake Command</td>
     <td class="Not Providing">
       UCA-7.1: Apollo does not provide any brake command (0-100%) when in autonomous mode (assumption: brake commands always sent on regular interval even if 0% brake is commanded)
     </td>

@@ -54,14 +54,14 @@
       UCA-7.1: Apollo does not provide any brake command (0-100%) when in autonomous mode (assumption: brake commands always sent on regular interval even if 0% brake is commanded)
     </td>
     <td class="Providing">
-
+      N/A
     </td>
     <td class="Too Early / Too Late / Out of Order">
       UCA-7.2: Apollo provides a brake command with too early timing that is outside of the time range when the signal is expected at the recipient (msg rate too high)<br><br>
       UCA-7.3: Apollo provides a brake command with too late timing that is outside of the time range specified for when the signal is supposed to arrive at the recipient (msg rate too low)
     </td>
     <td class="Stopped Too Soon / Applied Too Long">
-
+      N/A
     </td>
   </tr>
 

@@ -5,7 +5,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 
 STPA is split into 4 steps:
 
-1. Define the purpose of the analysis
+* Define the purpose of the analysis
   - [Losses and Hazards](losses-and-hazards.md)
 * Model the control structure
   - [Control Diagram](level-1/level1DotDiagram/level1-control-diagram.png)

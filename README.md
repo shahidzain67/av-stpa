@@ -11,4 +11,4 @@ The above is from the STPA handbook, which can be found [here](http://psas.scrip
 
 ## Apollo 2.0
 
-STPA has been performed for Apollo version 2.0, and the results can be found in [apollo-example](apollo-example/README.md) directory.
+STPA has been performed for Apollo version 2.0, and the results can be found in [apollo-example](apollo-example) directory.

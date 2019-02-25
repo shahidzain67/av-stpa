@@ -70,7 +70,7 @@
     <td class="Not Providing">
       Apollo does not provide steer command when vehicle is required to alter trajectory
     </td>
-    <td class="Providing">   
+    <td class="Providing">
       Apollo provides steer command when the vehicle required to maintain current trajectory<br><br>
       Apollo provides insufficient / excessive steering when executing a manoeuvre<br><br>
       Apollo provides excessive steering for current speed of the vehicle<br><br>
@@ -93,7 +93,7 @@
     <td class="Not Providing">
       Apollo does not provide throttle control when vehicle speed is less than or equal to desired speed (traffic flow, manoeuvre, planned test, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination
     </td>
-    <td class="Providing">   
+    <td class="Providing">
       Apollo provides throttle control when not in autonomous mode<br><br>
       Apollo provides throttle control when the brakes are being applied by the driver or Apollo is providing brake control<br><br>
       Apollo provides throttle control when relative velocity and distance to an obstacle mean that a collision is imminent<br><br>
@@ -113,7 +113,7 @@
       Apollo stops throttle control too soon when maintenance of TBD cruise speed is required<br><br>
       Apollo provides throttle for too long when deceleration is required for a manoeuvre or obstacle avoidance
     </td>
-  </tr>  
+  </tr>
 
   <tr>
     <td>Shift to Drive</td>
@@ -147,14 +147,14 @@
     <td class="Stopped Too Soon / Applied Too Long">
       N/A - discrete control
     </td>
-  </tr>  
+  </tr>
 
   <tr>
     <td>Shift to Park</td>
     <td class="Not Providing">
       Apollo does not provide shift to park command when in autonomous mode and the vehicle has parked
     </td>
-    <td class="Providing">  
+    <td class="Providing">
       Apollo provides a shift to park command when the vehicle is not parked<br><br>
       Apollo provides a shift to park command when autonomous mode is not active
     </td>
@@ -164,14 +164,14 @@
     <td class="Stopped Too Soon / Applied Too Long">
       N/A - discrete control
     </td>
-  </tr>  
+  </tr>
 
   <tr>
     <td>Shift to Reverse</td>
     <td class="Not Providing">
       Apollo does not provide shift to reverse command when in autonomous mode, the vehicle is not already in reverse and is required to move backwards
     </td>
-    <td class="Providing">   
+    <td class="Providing">
       Apollo provides shift to reverse when the vehicle is not required to move backwards<br><br>
       Apollo provides shift to reverse when autonomous mode is not active
     </td>
@@ -188,7 +188,7 @@
     <td class="Not Providing">
       Apollo does not provide parking brake on command when in autonomous mode, the vehicle is parked and the parking brake is off
     </td>
-    <td class="Providing">  
+    <td class="Providing">
       Apollo provides parking brake on command while vehicle is moving, or required to move<br><br>
       Apollo provides parking brake on command when autonomous mode is not active
     </td>
@@ -198,7 +198,7 @@
     <td class="Stopped Too Soon / Applied Too Long">
       N/A - discrete control
     </td>
-  </tr>  
+  </tr>
 
   <tr>
     <td>Parking Brake Off</td>
@@ -207,7 +207,7 @@
     </td>
     <td class="Providing">    
       Apollo provides parking brake off command while vehicle is parked and is not required to move<br><br>
-      Apollo provides parking brake off command when autonomous mode is not active      
+      Apollo provides parking brake off command when autonomous mode is not active
     </td>
     <td class="Too Early / Too Late / Out of Order">
       Apollo provides parking brake off command before the vehicle is ready to move
@@ -223,7 +223,7 @@
       Apollo does not provide headlights off command when in autonomous mode, headlights are on (low/high) and vehicle is parked<br><br>
       Apollo does not provide headlights off command when in autonomous mode, headlights are on high beam and light conditions do not require headlights to be on
     </td>
-    <td class="Providing">   
+    <td class="Providing">
       Apollo provides headlights off command when light conditions require the lights to be on and the vehicle is not parked<br><br>
       Apollo provides headlight off command when autonomous mode is not active
     </td>
@@ -233,7 +233,7 @@
     <td class="Stopped Too Soon / Applied Too Long">
       N/A - discrete control
     </td>
-  </tr>  
+  </tr>
 
   <tr>
     <td>Headlight Low Beam</td>
@@ -251,14 +251,14 @@
     <td class="Stopped Too Soon / Applied Too Long">
       N/A - discrete control
     </td>
-  </tr>   
+  </tr>
 
   <tr>
     <td>Headlight High Beam</td>
     <td class="Not Providing">
       Apollo does not provide headlights high beam command when in autonomous mode, the lights are not in high beam, the vehicle is not parked and environmental conditions require it to maintain TBD sight radius
     </td>
-    <td class="Providing">  
+    <td class="Providing">
       Apollo provides headlight high beam command such that the beam impinges oncoming traffic or traffic in front<br><br>
       Apollo provides headlight high beam command when autonomous mode is not active
     </td>
@@ -309,7 +309,7 @@
     <td class="Not Providing">
       Apollo does not provide horn command when in autonomous mode and it is necessary to alert others to the vehicle's presence
     </td>
-    <td class="Providing">   
+    <td class="Providing">
       Apollo provides horn command when it is not required to alert others to the vehicle's presence<br><br>
       Apollo provides horn command when autonomous mode is not active
     </td>
@@ -331,7 +331,7 @@
     <td class="Providing">
       Apollo provides a turn signal command when there is no upcoming manoeuvre<br><br>
       Apollo provides the opposite polarity of signal when conducting a manoeuvre<br><br>
-      Apollo provides turn signal command when autonomous mode is not active  
+      Apollo provides turn signal command when autonomous mode is not active
     </td>
     <td class="Too Early / Too Late / Out of Order">
       Apollo provides a turn signal command too late when in autonomous mode and will be conducting manoeuvre within TBD seconds<br><br>
@@ -339,9 +339,9 @@
     </td>
     <td class="Stopped Too Soon / Applied Too Long">
       Apollo provides turn signal for too long after manoeuvre is already complete<br><br>
-      Apollo stops turn signal too soon, prior to manoeuvre being completed  
+      Apollo stops turn signal too soon, prior to manoeuvre being completed
     </td>
-  </tr>   
+  </tr>
 
 </table>
 

@@ -65,6 +65,29 @@
     </td>
   </tr>
 
+  <tr>
+    <td>Steering</td>
+    <td class="Not Providing">
+      Apollo does not provide steer command when vehicle is required to alter trajectory
+    </td>
+    <td class="Providing">   
+      Apollo provides steer command when the vehicle required to maintain current trajectory<br><br>
+      Apollo provides insufficient / excessive steering when executing a manoeuvre<br><br>
+      Apollo provides excessive steering for current speed of the vehicle<br><br>
+      Apollo provides steer command which would cause vehicle to collide with an obstacle<br><br>
+      Apollo provides steer command for wrong direction<br><br>
+      Apollo provides incorrect steer command when vehicle is unstable
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides steer command before vehicle reaches turn<br><br>
+      Apollo provides steer command too late at a turn
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      Apollo stops steering before vehicle has completed manoeuvre<br><br>
+      Apollo continues steering after vehicle has manoeuvred
+    </td>
+  </tr>
+
 </table>
 
 * Note : The difference between "brake control" and "brake command" is intentional. The brake command is sent repetitively by Apollo with a set time interval, even if the brake amount is 0 it is still sent. "Brake control" refers to a brake command with significant braking (>x%), which is functionally considered as "pressing the brakes".

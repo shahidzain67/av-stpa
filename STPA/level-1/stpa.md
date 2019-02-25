@@ -68,23 +68,23 @@
   <tr>
     <td>Steering</td>
     <td class="Not Providing">
-      Apollo does not provide steer command when vehicle is required to alter trajectory
+      Apollo does not provide steer control when in autonomous mode and vehicle is required to alter trajectory
     </td>
     <td class="Providing">
-      Apollo provides steer command when the vehicle required to maintain current trajectory<br><br>
-      Apollo provides insufficient / excessive steering when executing a manoeuvre<br><br>
-      Apollo provides excessive steering for current speed of the vehicle<br><br>
-      Apollo provides steer command which would cause vehicle to collide with an obstacle<br><br>
-      Apollo provides steer command for wrong direction<br><br>
-      Apollo provides incorrect steer command when vehicle is unstable
+      Apollo provides steer control when the vehicle required to maintain current trajectory<br><br>
+      Apollo provides insufficient / excessive steer control when executing a manoeuvre<br><br>
+      Apollo provides excessive steer control for current speed of the vehicle<br><br>
+      Apollo provides steer control which would cause vehicle to collide with an obstacle<br><br>
+      Apollo provides steer control for wrong direction<br><br>
+      Apollo provides steer control when autonomous mode is not active
     </td>
     <td class="Too Early / Too Late / Out of Order">
-      Apollo provides steer command before vehicle reaches turn<br><br>
-      Apollo provides steer command too late at a turn
+      Apollo provides steer control before vehicle reaches manoeuvre<br><br>
+      Apollo provides steer control too late at a manoeuvre
     </td>
     <td class="Stopped Too Soon / Applied Too Long">
-      Apollo stops steering before vehicle has completed manoeuvre<br><br>
-      Apollo continues steering after vehicle has manoeuvred
+      Apollo stops steer control before vehicle has completed manoeuvre<br><br>
+      Apollo continues steer control after vehicle has manoeuvred
     </td>
   </tr>
 

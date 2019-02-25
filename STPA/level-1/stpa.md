@@ -322,6 +322,26 @@
     </td>
   </tr>
 
+  <tr>
+    <td>Turn Signal</td>
+    <td class="Not Providing">
+      Apollo does not provide a turn signal command when in autonomous mode and will be conducting a manoeuvre within TBD seconds<br><br>
+      Apollo does not provide a hazard signal command when in autonomous mode and an emergency condition arises
+    </td>
+    <td class="Providing">
+      Apollo provides a turn signal command when there is no upcoming manoeuvre<br><br>
+      Apollo provides the opposite polarity of signal when conducting a manoeuvre<br><br>
+      Apollo provides turn signal command when autonomous mode is not active  
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides a turn signal command too late when in autonomous mode and will be conducting manoeuvre within TBD seconds<br><br>
+      Apollo provides a turn signal command too early when in autonomous manoeuvre and will be conducting a manoeuvre in more than TBD seconds
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      Apollo provides turn signal for too long after manoeuvre is already complete<br><br>
+      Apollo stops turn signal too soon, prior to manoeuvre being completed  
+    </td>
+  </tr>   
 
 </table>
 

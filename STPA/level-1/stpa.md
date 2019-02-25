@@ -94,23 +94,23 @@
       Apollo does not provide throttle control when vehicle speed is less than or equal to desired speed (traffic flow, manoeuvre, planned test, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination   
     </td>
     <td class="Providing">   
-      Apollo provides throttle control when not in autonomous mode
-      Apollo provides throttle control when the brakes are being applied by the driver or Apollo is providing brake control
+      Apollo provides throttle control when not in autonomous mode<br><br>
+      Apollo provides throttle control when the brakes are being applied by the driver or Apollo is providing brake control<br><br>
       Apollo provides throttle control when relative velocity and distance to an obstacle mean that a collision is imminent<br><br>
       Apollo provides throttle control when in autonomous mode and vehicle speed exceeds limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)<br><br>
       Apollo provides throttle control when in autonomous mode, the vehicle is stationary, and vehicle path is not clear<br><br>
       Apollo provides throttle control when in autonomous mode and the vehicle has reached the final destination<br><br>
       Apollo provides throttle control when in autonomous mode and collision occurs<br><br>
       Apollo provides throttle control when in autonomous mode with insufficient amount of throttle to accelerate to / maintain desired speed (traffic flow, manoeuvre, planned test etc.)    
-      Apollo provides throttle control when when lock has occurred, or the vehicle is unstable
+      Apollo provides throttle control when when lock has occurred, or the vehicle is unstable<br><br>
       Apollo provides throttle control that is excessive beyond physical limits for passengers
     </td>
     <td class="Too Early / Too Late / Out of Order">
-      Apollo provides throttle control too early at a traffic light or junction to pull out, when the the vehicle path is not clear
+      Apollo provides throttle control too early at a traffic light or junction to pull out, when the the vehicle path is not clear<br><br>
       Apollo provides throttle control too late at a traffic light or junction to pull out
     </td>
     <td class="Stopped Too Soon / Applied Too Long">
-      Apollo stops throttle control too soon when maintenance of TBD cruise speed is required
+      Apollo stops throttle control too soon when maintenance of TBD cruise speed is required<br><br>
       Apollo provides throttle for too long when deceleration is required for a manoeuvre or obstacle avoidance
     </td>
   </tr>  

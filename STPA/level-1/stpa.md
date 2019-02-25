@@ -304,6 +304,25 @@
     </td>
   </tr>
 
+  <tr>
+    <td>Horn</td>
+    <td class="Not Providing">
+      Apollo does not provide horn command when in autonomous mode and it is necessary to alert others to the vehicle's presence
+    </td>
+    <td class="Providing">   
+      Apollo provides horn command when it is not required to alert others to the vehicle's presence<br><br>
+      Apollo provides horn command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides horn command too late to alert others to the vehicle's presence
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      Apollo provides horn command for >tbd seconds<br><br>
+      Apollo provides horn command for < TBD seconds when in autonomous mode and it is necessary to alert others to the vehicle's presence
+    </td>
+  </tr>
+
+
 </table>
 
 * Note : The difference between "brake control" and "brake command" is intentional. The brake command is sent repetitively by Apollo with a set time interval, even if the brake amount is 0 it is still sent. "Brake control" refers to a brake command with significant braking (>x%), which is functionally considered as "pressing the brakes".

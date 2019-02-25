@@ -183,6 +183,41 @@
     </td>
   </tr>
 
+  <tr>
+    <td>Parking Brake On</td>
+    <td class="Not Providing">
+      Apollo does not provide parking brake on command when in autonomous mode, the vehicle is parked and the parking brake is off
+    </td>
+    <td class="Providing">  
+      Apollo provides parking brake on command while vehicle is moving, or required to move<br><br>
+      Apollo provides parking brake on command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo does not provide parking brake on command when in autonomous mode before vehicle is switched off
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>  
+
+  <tr>
+    <td>Parking Brake Off</td>
+    <td class="Not Providing">
+      Apollo does not provide parking off command when in autonomous mode, the vehicle is about to move and the parking brake is on
+    </td>
+    <td class="Providing">    
+      Apollo provides parking brake off command while vehicle is parked and is not required to move<br><br>
+      Apollo provides parking brake off command when autonomous mode is not active      
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides parking brake off command before the vehicle is ready to move
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>
+
+
 </table>
 
 * Note : The difference between "brake control" and "brake command" is intentional. The brake command is sent repetitively by Apollo with a set time interval, even if the brake amount is 0 it is still sent. "Brake control" refers to a brake command with significant braking (>x%), which is functionally considered as "pressing the brakes".

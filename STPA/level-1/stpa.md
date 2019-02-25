@@ -115,6 +115,74 @@
     </td>
   </tr>  
 
+  <tr>
+    <td>Shift to Drive</td>
+    <td class="Not Providing">
+      Apollo does not provide shift to drive command when in autonomous mode, the vehicle is not already in drive and the vehicle is required to move forwards
+    </td>
+    <td class="Providing">    
+      Apollo provides shift to drive when the vehicle is not required to move forwards<br><br>
+      Apollo provides shift to drive when autonomous driving is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      N/A
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>
+
+  <tr>
+    <td>Shift to Neutral</td>
+    <td class="Not Providing">
+      Apollo does not provide shift to neutral command when in autonomous mode and required by a throttle malfunction
+    </td>
+    <td class="Providing">    
+      Apollo provides shift to neutral command when the vehicle is moving<br><br>
+      Apollo provides shift to neutral command when autonomous driving is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      N/A
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>  
+
+  <tr>
+    <td>Shift to Park</td>
+    <td class="Not Providing">
+      Apollo does not provide shift to park command when in autonomous mode and the vehicle has parked
+    </td>
+    <td class="Providing">  
+      Apollo provides a shift to park command when the vehicle is not parked<br><br>
+      Apollo provides a shift to park command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      N/A
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>  
+
+  <tr>
+    <td>Shift to Reverse</td>
+    <td class="Not Providing">
+      Apollo does not provide shift to reverse command when is in autonomous mode, the vehicle is not already in reverse and is required to move backwards
+    </td>
+    <td class="Providing">   
+      Apollo provides shift to reverse when the vehicle is not required to move backwards<br><br>
+      Apollo provides shift to reverse when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      N/A
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>
+
 </table>
 
 * Note : The difference between "brake control" and "brake command" is intentional. The brake command is sent repetitively by Apollo with a set time interval, even if the brake amount is 0 it is still sent. "Brake control" refers to a brake command with significant braking (>x%), which is functionally considered as "pressing the brakes".

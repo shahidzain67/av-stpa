@@ -91,7 +91,7 @@
   <tr>
     <td>Throttle</td>
     <td class="Not Providing">
-      Apollo does not provide throttle control when vehicle speed is less than or equal to desired speed (traffic flow, manoeuvre, planned test, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination   
+      Apollo does not provide throttle control when vehicle speed is less than or equal to desired speed (traffic flow, manoeuvre, planned test, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination
     </td>
     <td class="Providing">   
       Apollo provides throttle control when not in autonomous mode<br><br>
@@ -169,7 +169,7 @@
   <tr>
     <td>Shift to Reverse</td>
     <td class="Not Providing">
-      Apollo does not provide shift to reverse command when is in autonomous mode, the vehicle is not already in reverse and is required to move backwards
+      Apollo does not provide shift to reverse command when in autonomous mode, the vehicle is not already in reverse and is required to move backwards
     </td>
     <td class="Providing">   
       Apollo provides shift to reverse when the vehicle is not required to move backwards<br><br>
@@ -217,6 +217,92 @@
     </td>
   </tr>
 
+  <tr>
+    <td>Headlights Off</td>
+    <td class="Not Providing">
+      Apollo does not provide headlights off command when in autonomous mode, headlights are on (low/high) and vehicle is parked<br><br>
+      Apollo does not provide headlights off command when in autonomous mode, headlights are on high beam and light conditions do not require headlights to be on
+    </td>
+    <td class="Providing">   
+      Apollo provides headlights off command when light conditions require the lights to be on and the vehicle is not parked<br><br>
+      Apollo provides headlight off command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides headlights off command too soon before entering a parked state
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>  
+
+  <tr>
+    <td>Headlight Low Beam</td>
+    <td class="Not Providing">
+      Apollo does not provide headlight low beam command when in autonomous mode, the lights are off, light conditions require the lights to be on, environmental conditions do not require high beam and the vehicle is not parked<br><br>
+      Apollo does not provide headlight low beam command when in autonomous mode, high beam is on, the light conditions require the lights to be on, the vehicle is not parked and either a vehicle is in front or is oncoming
+    </td>
+    <td class="Providing">    
+      Apollo provides headlight low beam command when when environmental conditions require high beam to maintain TBD sight radius<br><br>
+      Apollo provides headlight low beam command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides headlight low beam command too late when dipping the lights for an oncoming vehicle or when approaching a vehicle from behind
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>   
+
+  <tr>
+    <td>Headlight High Beam</td>
+    <td class="Not Providing">
+      Apollo does not provide headlights high beam command when in autonomous mode, the lights are not in high beam, the vehicle is not parked and environmental conditions require it to maintain TBD sight radius
+    </td>
+    <td class="Providing">  
+      Apollo provides headlight high beam command such that the beam impinges oncoming traffic or traffic in front<br><br>
+      Apollo provides headlight high beam command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides headlight high beam command too early or too late when restoring high beam after passing an oncoming vehicle, or a vehicle is no longer in front
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>
+
+  <tr>
+    <td>Fog Lights On</td>
+    <td class="Not Providing">
+      Apollo does not provide fog lights on command when in autonomous mode, fog lights are off, the vehicle is not parked and TBD visibility conditions require them to be on
+    </td>
+    <td class="Providing">    
+       Apollo provides fog lights on command when TBD visibility conditions do not require them to be on<br><br>
+       Apollo provides fog lights on command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      Apollo provides fog lights on command too late when TBD visibility conditions require them to be on
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>
+
+  <tr>
+    <td>Fog Lights Off</td>
+    <td class="Not Providing">
+      Apollo does not provide fog lights off command when in autonomous mode, fog lights are on and TBD visibility conditions do not require them to be on
+    </td>
+    <td class="Providing">    
+      Apollo provides fog lights off command when TBD visibility conditions require them to be on and the vehicle is not parked<br><br>
+      Apollo provides fog lights off command when autonomous mode is not active
+    </td>
+    <td class="Too Early / Too Late / Out of Order">
+      N/A
+    </td>
+    <td class="Stopped Too Soon / Applied Too Long">
+      N/A - discrete control
+    </td>
+  </tr>
 
 </table>
 

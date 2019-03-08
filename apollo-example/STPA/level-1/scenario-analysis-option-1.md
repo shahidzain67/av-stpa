@@ -292,12 +292,38 @@ Feedback info:
   - Inadequate collision detection
   - Inadequate driver input
 
-## Type 3 & 4
+## Type 3
 
-  * Type 3:
-    - Apollo does provide brake control
-    - The vehicle's brake system does not receive brake control action from Apollo
+#### Not Providing Type 3:
+  - Apollo does provide brake control
+  - The vehicle's brake system does not receive brake control action / receives inadequate control action from Apollo
 
-  * Type 4:
-    - The vehicle's brake system receives a brake control
-    - The vehicle does not decelerate
+#### Providing Type 3:
+  - Apollo does not provide brake control
+  - The vehicle's brake system does receive brake control action
+
+#### Providing Too Early / Too Late Type 3:
+  - Apollo provides the brake control on time
+  - The vehicle's brake system receives the control action too late
+
+#### Too Short / Too Long Type 3:
+  - Apollo provides adequate brake control
+  - The vehicle's brake system receives too short/long control action
+
+## Type 4
+
+#### Not Providing Type 4:
+  - The vehicle's brake system receives brake control
+  - The vehicle does not decelerate
+
+#### Providing Type 4:
+  - The vehicle's brake system does not receive brake control
+  - The vehicle decelerates
+
+#### Providing Too Early / Too Late Type 4:
+  - The vehicle's brake system receives brake control on time
+  - Deceleration is delayed
+
+#### Too Short / Too Long Type 4:
+  - The vehicle's brake system receives adequate brake control
+  - The vehicle decelerates for too long or too short

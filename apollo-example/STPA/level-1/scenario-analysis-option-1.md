@@ -271,23 +271,26 @@ Feedback info:
   - Apollo stops applying brake control too soon at end of test before driver has resumed control
   - The feedback does indicate that the driver has not resumed control
 
-#### Type 2.22:
+#### Type 2.21:
   - The feedback indicates that the driver has resumed control
   - The driver has not resumed control
 
 Feedback info:
-  - 
+  - Inadequate driver input
 
 ## UCA-6.22: Apollo stops applying brake control when collision occurs and driver has not resumed control (e.g. manual braking)
 
-* Type 1:
+#### Type 1.22:
   - Apollo stops applying brake control when collision occurs and driver has not resumed control
   - The feedback does indicate that a collision has occurred and that the driver has not resumed control
 
-* Type 2:
+#### Type 2.22:
   - The feedback does not indicate that a collision has occurred or it indicates that the driver has resumed control
   - A collision has occurred and the driver has not resumed control
 
+Feedback info:
+  - Inadequate collision detection
+  - Inadequate driver input
 
 ## Type 3 & 4
 

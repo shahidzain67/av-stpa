@@ -8,13 +8,13 @@
   - L-5:Loss of customer satisfaction
 
 ## Hazards
-  - H-1: Vehicle leaves authorised or designated road or highway [L-1] [L-2] [L-3] [L-4] [L-5] 
-  - H-2: Vehicle does not maintain safe distance to other vehicles or objects [L-1] [L-2] [L-3] [L-4] [L-5] 
-  - H-3: Vehicle fails to comply with driving laws (highway code) [L-1] [L-2] [L-3] [L-4] [L-5] 
-  - H-4: Vehicle is unpredictable to others [L-1] [L-2] [L-3] [L-4] [L-5] 
-  - H-5: Vehicle becomes uncontrollable to driver [L-1] [L-2] [L-3] [L-4] [L-5] 
-  - H-6: Vehicle becomes unstable e.g wheellock, oversteer [L-1] [L-2] [L-3] [L-4] [L-5] 
-  - H-7: Vehicle does not complete route and arives at incorrect destination [L-4] [L-5] 
+  - H-1: Vehicle leaves authorised or designated road or highway [L-1] [L-2] [L-3] [L-4] [L-5]
+  - H-2: Vehicle does not maintain safe distance to other vehicles or objects [L-1] [L-2] [L-3] [L-4] [L-5]
+  - H-3: Vehicle fails to comply with driving laws (highway code) [L-1] [L-2] [L-3] [L-4] [L-5]
+  - H-4: Vehicle is unpredictable to others [L-1] [L-2] [L-3] [L-4] [L-5]
+  - H-5: Vehicle becomes uncontrollable to driver [L-1] [L-2] [L-3] [L-4] [L-5]
+  - H-6: Vehicle becomes unstable e.g wheellock, oversteer [L-1] [L-2] [L-3] [L-4] [L-5]
+  - H-7: Vehicle does not complete route and arives at incorrect destination [L-4] [L-5]
 
 ## Controls
 
@@ -537,7 +537,7 @@ Type 3 scenario:
                - **REQUIREMENT REQ-1: Physical brake actuators must be designed must be designed and tested to be operationally reliable**
 
 
-#### UCA-6.1: Apollo does not provide the brake control action when relative velocity and distance to an obstacle mean that a collision is imminent.[H-2] [H-3] [H-4] 
+#### UCA-6.1: Apollo does not provide the brake control action when relative velocity and distance to an obstacle mean that a collision is imminent.[H-2] [H-3] [H-4]
 
 **True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector that indicate a collision**
 
@@ -703,7 +703,7 @@ Type 2 Scenario:
                - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
-#### UCA-6.2: Apollo does not provide brake control when in autonomous mode and vehicle speed exceeds limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)[H-1] [H-2] [H-3] [H-4] [H-6] 
+#### UCA-6.2: Apollo does not provide brake control when in autonomous mode and vehicle speed exceeds limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)[H-1] [H-2] [H-3] [H-4] [H-6]
 
 **True statement from UCA context: Vehicle is rapidly approaching / traversing a corner or bend in the road at excessive speed**
 
@@ -827,7 +827,7 @@ Type 1 Scenario:
                - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
-#### UCA-6.3: Apollo does not provide brake control when in autonomous mode, the vehicle is stationary, and vehicle path is not clear[H-2] [H-3] [H-4] 
+#### UCA-6.3: Apollo does not provide brake control when in autonomous mode, the vehicle is stationary, and vehicle path is not clear[H-2] [H-3] [H-4]
 
 **True statement from UCA context: Apollo is parked at a traffic lights at red but does not apply brakes as required by driving code *(human driver would be required to apply the handbrake)***
 
@@ -915,7 +915,7 @@ Type 1 scenario:
                - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
 
 
-#### UCA-6.4: Apollo does not provide brake control when in autonomous mode and the vehicle has reached the final destination[H-7] 
+#### UCA-6.4: Apollo does not provide brake control when in autonomous mode and the vehicle has reached the final destination[H-7]
 
 **True statement from UCA context: The vehicle has reached the route destination**
 
@@ -957,7 +957,7 @@ Type 1 scenario:
                - **REQUIREMENT REQ-49: Apollo must be capable of identifying the journey's end, and able to identify a safe stopping location**
 
 
-#### UCA-6.6: Apollo does not provide brake control when in autonomous mode and collision occurs[H-1] [H-2] [H-3] [H-4] [H-5] 
+#### UCA-6.6: Apollo does not provide brake control when in autonomous mode and collision occurs[H-1] [H-2] [H-3] [H-4] [H-5]
 
 **True statement from UCA context: The vehicle has suffered a collision and must stop (if only to comply with highway regulation)**
 
@@ -1009,7 +1009,7 @@ Type 2 scenario:
        - Collision sensors exist, but have not been routed through the appropriate data interfaces
 
 
-#### UCA-6.7: Apollo provides brake command with insufficient amount of braking below the minimum amount needed to avert a forward collision[H-2] [H-3] [H-4] 
+#### UCA-6.7: Apollo provides brake command with insufficient amount of braking below the minimum amount needed to avert a forward collision[H-2] [H-3] [H-4]
 
 **True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector such that the vehicle will not be brought to rest in time to avert a collision**
 
@@ -1222,7 +1222,7 @@ Type 1 scenario:
                - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
-#### UCA-6.8: Apollo provides brake command when autonomous driving is not active (off, standby, overridden, or e-stop)[H-3] [H-4] [H-5] [H-6] 
+#### UCA-6.8: Apollo provides brake command when autonomous driving is not active (off, standby, overridden, or e-stop)[H-3] [H-4] [H-5] [H-6]
 
 **True statement from UCA context: The vehicle is moving and the human driver takes control, but Apollo continues to brake**
 
@@ -1247,7 +1247,7 @@ Type 2 scenario:
                - **REQUIREMENT REQ-56: A total DataSpeed e-stop should be fed back to Apollo and Apollo should disengage automatic mode**
 
 
-#### UCA-6.9: Apollo provides brake control when vehicle speed does not exceed limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination[H-4] 
+#### UCA-6.9: Apollo provides brake control when vehicle speed does not exceed limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination[H-4]
 
 **True statement from UCA context: there is no need to apply the brakes – no obstacles, the speed limit has not changed, and the vehicle is not going down hill**
 
@@ -1352,7 +1352,7 @@ Type 1 Scenario:
                - **REQUIREMENT REQ-62: Apollo algorithm must take account of time-dependent access and speed limits, for example school zones and bus lanes**
 
 
-#### UCA-6.10: UCA-6.10: Apollo provides brake control when driver is providing throttle[H-4] [H-5] [H-6] 
+#### UCA-6.10: UCA-6.10: Apollo provides brake control when driver is providing throttle[H-4] [H-5] [H-6]
 
 **True statement from UCA context: The human driver feels it best to accelerate e.g. for safety reasons**
 
@@ -1386,7 +1386,7 @@ Type 2 scenario:
                - **REQUIREMENT REQ-63: Apollo must detect a human application of throttle and not apply the brakes**
 
 
-#### UCA-6.11: Apollo provides excessive brake command when wheel lock has occurred and lateral control is needed  (rationale: ABS may not work below 5mph or other situations)[H-1] [H-2] [H-4] [H-6] 
+#### UCA-6.11: Apollo provides excessive brake command when wheel lock has occurred and lateral control is needed  (rationale: ABS may not work below 5mph or other situations)[H-1] [H-2] [H-4] [H-6]
 
 **True statement from UCA context: Apollo is applying brakes to slow down, in the context of an ABS failure to activate while the wheels are slipping**
 
@@ -1424,7 +1424,7 @@ Type 1 Scenario:
                - **REQUIREMENT REQ-65: Apollo must account for ABS availability when deciding braking level**
 
 
-#### UCA-6.12: Apollo provides brake command with insufficient amount of braking to reduce vehicle speed within limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)[H-1] [H-2] [H-3] [H-4] [H-6] 
+#### UCA-6.12: Apollo provides brake command with insufficient amount of braking to reduce vehicle speed within limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)[H-1] [H-2] [H-3] [H-4] [H-6]
 
 **True statement from UCA context: Vehicle is rapidly approaching / traversing a corner or bend in the road at excessive speed**
 
@@ -1770,7 +1770,7 @@ Type 2 Scenario:
                - **REQUIREMENT REQ-15: All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth**
 
 
-#### UCA-6.14: Apollo provides brake control too late (TBD sec) after relative velocity and distance to an obstacle mean that a collision is imminent[H-2] [H-3] [H-4] 
+#### UCA-6.14: Apollo provides brake control too late (TBD sec) after relative velocity and distance to an obstacle mean that a collision is imminent[H-2] [H-3] [H-4]
 
 **True statement from UCA context: An opportunity to brake in order to avoid a collision with an obstacle is being missed**
 
@@ -1850,7 +1850,7 @@ Type 2 scenario:
                - **REQUIREMENT REQ-35: All sensors must be designed and tested for operational reliability**
 
 
-#### UCA-6.15: Apollo provides braking control too late (> tbd seconds) prior to manoeuvre[H-1] [H-2] [H-3] [H-4] [H-6] 
+#### UCA-6.15: Apollo provides braking control too late (> tbd seconds) prior to manoeuvre[H-1] [H-2] [H-3] [H-4] [H-6]
 
 **True statement from UCA context: An opportunity to brake in order to avoid a collision with an obstacle is being missed**
 
@@ -1900,7 +1900,7 @@ Type 2 scenario:
                - **REQUIREMENT REQ-35: All sensors must be designed and tested for operational reliability**
 
 
-#### UCA-6.16: Apollo provides brake control too late before (< TBD sec before) limits are exceeded (limits for upcoming manoeuvre, controllability, stability, speed limit, traffic flow limit, planned test limit, etc.)[H-2] [H-3] [H-4] [H-6] 
+#### UCA-6.16: Apollo provides brake control too late before (< TBD sec before) limits are exceeded (limits for upcoming manoeuvre, controllability, stability, speed limit, traffic flow limit, planned test limit, etc.)[H-2] [H-3] [H-4] [H-6]
 
 **True statement from UCA context: The vehicle is passing through the point where gentle braking will suffice, such that the vehicle has not begun to brake and more severe braking or stability compromise will ensue**
 
@@ -2011,7 +2011,7 @@ Type 1 scenario:
                - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
-#### UCA-6.17: Apollo removes brake control too early when relative velocity and distance to an obstacle mean that a collision will occur[H-2] [H-3] [H-4] 
+#### UCA-6.17: Apollo removes brake control too early when relative velocity and distance to an obstacle mean that a collision will occur[H-2] [H-3] [H-4]
 
 **True statement from UCA context: The vehicle is approaching an obstacle, and slows down to some extent but then removes the braking control**
 
@@ -2176,7 +2176,7 @@ Type 2 Scenario:
                - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
 
 
-#### UCA-6.19: Apollo stops applying brake control when in autonomous mode before (> TBD seconds before) vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)[H-1] [H-2] [H-3] [H-4] [H-6] 
+#### UCA-6.19: Apollo stops applying brake control when in autonomous mode before (> TBD seconds before) vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)[H-1] [H-2] [H-3] [H-4] [H-6]
 
 **True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but decleration has ceased**
 
@@ -2294,7 +2294,7 @@ Type 1 Scenario:
        - Undulations in the road, coupled with fluctuations in the road surface texture and deviations in the road relative to a circular arc are misinterpreted as vehicle slippage
 
 
-#### UCA-6.20: Apollo continues applying brake control too long (> TBD seconds) after vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)[H-3] [H-4] 
+#### UCA-6.20: Apollo continues applying brake control too long (> TBD seconds) after vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)[H-3] [H-4]
 
 **True statement from UCA context: The vehicle has approached a e.g. a corner, slowed down, but is now slowing down to a speed that is below the expectations of other driver and (for example) the UK highway code for 'progress'**
 
@@ -2334,7 +2334,7 @@ Type 1 scenario:
        - Algorithm flaw: The algorithm is excessively cautious, making a lack of progress; the risk of rear end collision / overtaking collisions is increased
 
 
-#### UCA-6.21: Apollo stops applying brake control too soon at end of test before driver has resumed control (e.g. manual braking)[H-1] [H-2] [H-3] [H-4] 
+#### UCA-6.21: Apollo stops applying brake control too soon at end of test before driver has resumed control (e.g. manual braking)[H-1] [H-2] [H-3] [H-4]
 
 **True statement from UCA context: The vehicle comes to a halt at some predesignated position, but the brakes have not been engaged prior to the human driver resuming control**
 
@@ -2390,7 +2390,7 @@ Type 1 Scenario:
                - **REQUIREMENT REQ-78: Apollo must use the local gradient, rather than the map gradient, when applying the brakes when stationary**
 
 
-#### UCA-6.22: CA-6.22: Apollo stops applying brake control when collision occurs and driver has not resumed control (e.g. manual braking)[H-1] [H-2] [H-3] [H-4] [H-5] 
+#### UCA-6.22: CA-6.22: Apollo stops applying brake control when collision occurs and driver has not resumed control (e.g. manual braking)[H-1] [H-2] [H-3] [H-4] [H-5]
 
 **True statement from UCA context: The vehicle has been brought to rest, but the vehicle drops out of automatic mode following a collision - leaving the vehicle free to move on e.g. a hill, or if further collisions take place**
 
@@ -2423,4 +2423,3 @@ Type 1 scenario:
 
 
                - **REQUIREMENT REQ-52: Apollo must bring the vehicle to rest and apply the parking brake after a collision**
-

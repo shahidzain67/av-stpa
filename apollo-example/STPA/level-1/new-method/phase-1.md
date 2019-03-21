@@ -299,19 +299,37 @@ Feedback info:
   - The vehicle's brake system does not receive brake control action / receives inadequate control action from Apollo
 
 Control Path Info:
-  -
+  - Bus fault between Apollo and Dataspeed drops brake control action
+  - Bus fault between Dataspeed and vehicle drops brake control action
+  - Dataspeed drops brake control actions
 
 #### Providing Type 3:
   - Apollo does not provide brake control
   - The vehicle's brake system does receive brake control action
 
+Control Path Info:
+  - Bus fault between Apollo and Dataspeed sends erroneous brake control action
+  - Bus fault between Dataspeed and vehicle sends erroneous brake control action
+  - Dataspeed sends brake control action (without command from any controller)
+
 #### Providing Too Early / Too Late Type 3:
   - Apollo provides the brake control on time
   - The vehicle's brake system receives the control action too late
 
+Control Path Info:
+  - Bus delays between Apollo and Dataspeed
+  - Bus delays between Dataspeed and vehicle
+  - Delays caused by Dataspeed
+
 #### Too Short / Too Long Type 3:
   - Apollo provides adequate brake control
   - The vehicle's brake system receives too short/long control action
+
+Control Path Info:
+  - Bus fault between Apollo and Dataspeed either drops commands or adds erroneous commands
+  - Bus fault between Dataspeed and vehicle either drops commands or adds erroneous commands
+  - Dataspeed drops brake control action messages from Apollo
+  - Dataspeed sends brake control action longer than commanded to
 
 ## Type 4
 

@@ -1,6 +1,6 @@
-# Type 2 Scenario Refinement
+## Type 2 Scenario Refinement
 
-## Inadequate vehicle speed feedback and deceleration
+### Inadequate vehicle speed feedback and deceleration
 
 Refined scenarios:
 - Sensor(s) used to detect vehicle speed fail
@@ -12,7 +12,7 @@ Requirements:
 - Vehicle speed feedback must be updated every TBD ms
 - Vehicle speed feedback must be accurate to within x mph
 
-## Inadequate object detection, object distance detection and object velocity detection
+### Inadequate object detection, object distance detection and object velocity detection
 
 Refined scenarios:
 - Sensor(s) used to detect object fail
@@ -25,7 +25,7 @@ Requirements:
 - Object detection feedback must be updated every TBD ms
 - Object detection feedback must be accurate to within x m
 
-## Inadequate vehicle location
+### Inadequate vehicle location
 
 Refined scenarios:
 - Sensor(s) used to detect location fail
@@ -37,7 +37,7 @@ Requirements:
 - Vehicle location feedback must be updated every TBD ms
 - Vehicle location feedback must be accurate to within x m
 
-## Inadequate limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.)
+### Inadequate limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.)
 
 Refined scenarios:
 - Traffic flow limit : object velocity detection (as above)
@@ -53,7 +53,7 @@ Requirements:
 - Optical feedback must have x resolution
 - Apollo must receive dynamic (i.e. not from a map file) information that indicates any speed limits it must adhere to
 
-## Inadequate autonomous mode detection, driver input and driver throttle detection
+### Inadequate autonomous mode detection, driver input and driver throttle detection
 
 Refined scenarios:
 - Dataspeed feedback fails
@@ -63,7 +63,7 @@ Requirements:
 - Apollo must receive information from Dataspeed which indicates if the driver has taken control of the vehicle (pressed throttle, brake, etc.)
 - Apollo must receive information from the driver which indicates if they want to take control
 
-## Inadequate traffic signal detection (red lights, give way etc.)
+### Inadequate traffic signal detection (red lights, give way etc.)
 
 Refined scenarios:
 - Location : as above
@@ -73,7 +73,7 @@ Refined scenarios:
 Requirements:
 - Apollo must receive dynamic (i.e. not from a map file) information that indicates any traffic signals it must adhere to
 
-## Inadequate destination location
+### Inadequate destination location
 
 Refined scenarios:
 - Map file is incorrect / lack sufficient detail
@@ -83,7 +83,7 @@ Requirements:
 - Apollo must receive up to date map information, which is detailed to x m
 - Apollo must receive route waypoint information which is accurate to x m
 
-## Inadequate collision detection
+### Inadequate collision detection
 
 Refined scenarios:
 - Sensor(s) used to detect collisions fail
@@ -93,9 +93,9 @@ Requirements:
 - Apollo must receive feedback that indicates whether the vehicle has been in a collision
 - Apollo must have means to detect collisions in event of single sensor failure
 
-## Inadequate fault detection
+### Inadequate fault detection
 
-## Inadequate wheel lock detection
+### Inadequate wheel lock detection
 
 Refined scenarios:
 - Sensor(s) used to detect wheel lock fail

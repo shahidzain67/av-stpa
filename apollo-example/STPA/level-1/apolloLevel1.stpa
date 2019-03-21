@@ -1,0 +1,883 @@
+Losses			1
+    Loss of life or injury	[L-1]		2
+    Loss of or damage to vehicle	[L-2]		3
+    Loss of or damage to objects outside the vehicle	[L-3]		4
+    Loss of transportation mission	[L-4]		5
+    Loss of customer satisfaction	[L-5]		6
+Hazards			8
+    Vehicle leaves authorised or designated road or highway	[H-1]	[L-1] [L-2] [L-3] [L-4] [L-5] 	9
+    Vehicle does not maintain safe distance to other vehicles or objects	[H-2]	[L-1] [L-2] [L-3] [L-4] [L-5] 	10
+    Vehicle fails to comply with driving laws (highway code)	[H-3]	[L-1] [L-2] [L-3] [L-4] [L-5] 	11
+    Vehicle is unpredictable to others	[H-4]	[L-1] [L-2] [L-3] [L-4] [L-5] 	12
+    Vehicle becomes uncontrollable to driver	[H-5]	[L-1] [L-2] [L-3] [L-4] [L-5] 	13
+    Vehicle becomes unstable e.g wheellock, oversteer	[H-6]	[L-1] [L-2] [L-3] [L-4] [L-5] 	14
+    Vehicle does not complete route and arives at incorrect destination	[H-7]	[L-4] [L-5] 	15
+Controls			16
+    Brakes	[C-6]		22
+        Apollo provides the brake command in a prompt, correct manner when it is both safe and necessary to do so (rendered unsafe by not providing)	[CA-6.1]		115
+            True Statement from the CA context: It is necessary for the vehicle to brake, and Apollo sends the correct brake command	[TRUE-5]		116
+                [Belief is not required here]	[BEL-10001]		117
+                    Type 3 Scenario: Apollo sends the brake command and it is received by the actuator, but not applied to the controlled process	[CS-3]		118
+                        Improper execution: The brake actuator has failed and cannot apply braking	[FB-11]		119
+                            A mechanical fault causes the physical part of the brake actuator to sieze	[HOW-13]		120
+                                Physical brake actuators must be designed must be designed and tested to be operationally reliable	[REQ-1]		697
+                    Type 3 Scenario: Apollo sends the brake command and it is received by the actuator, but not applied to the controlled process	[CS-3]		128
+                        Improper Execution: The actuator does not respond due to loss of power	[FB-14]		135
+                            Battery / alternator system failure	[HOW-21]		136
+                                The battery / alternator power system must be designed and tested to be operationally 	[REQ-2]		698
+                            Mechanical damage to the power supply route	[HOW-22]		137
+                                The power supply route to the brake actuators must be redundant if practicable	[REQ-3]		699
+                            A power supervisory system has incorrectly ordered the actuator to 'sleep'	[HOW-23]		138
+                                The power supply system must not issue brake actuator 'sleep' commands during normal operation	[REQ-4]		700
+                    Type 3 Scenario: Apollo sends the brake command and it is received by the actuator, but not applied to the controlled process	[CS-3]		139
+                        Improper Execution: The actuator does not respond due to data / buffer overload in the actuator	[FB-15]		140
+                            The command transmission rate is too high and the message is discarded due to a buffer overflow	[HOW-24]		141
+                                The brake command transmission rate should not exceed the rate at which the brake actuators can process commands 	[REQ-5]		701
+                            The command was about to be processed, but the buffer was purged due to a buffer overflow	[HOW-25]		142
+                                The brake command transmission rate should not exceed the rate at which the brake actuators can process commands 	[REQ-5]		702
+                                Any brake actuator buffers should routinely purge data on a FIFO basis	[REQ-6]		703
+                    Type 3 Scenario: Apollo sends the brake command and it is received by the actuator, but not applied to the controlled process	[CS-3]		144
+                        Improper Execution: due to incorrect priority scheme used by the actuator	[FB-16]		145
+                            The brake actuator is locked out by an unterminated command	[HOW-27]		146
+                                The brake commands should not be implemented on a select-exectute model	[REQ-7]		704
+                            The actuator processes a command from another system that should have been disregarded	[HOW-28]		147
+                                All system commands must be mainted in a master I/O schedule that, where practicable, uses unique addressing for each component and command	[REQ-8]		705
+                            The actuator is time-stamp priority aware, but incorrect time synchronisation renders this priority scheme ineffective	[HOW-29]		148
+                                All vehicle systems must be time synchronised via an on-board clock master, rather than 'dialing out' to an off-vehicle source	[REQ-9]		706
+                    Type 3 Scenario: Apollo sends brake command but command it is not received by the actuator	[CS-4]		121
+                        Improper Execution: Transmission medium error prevents the command being received	[FB-12]		122
+                            A primary transmission medium reports healthy but has a fault	[HOW-14]		123
+                                Transmission media should be polled regularly where practicable to ensure that false positives are not reported	[REQ-10]		707
+                            A primary path is severed by collision or other mechanical fault, and there is no redundant path	[HOW-15]		124
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		708
+                            A redundant command transmission medium is incorrectly installed or parameterized, which is not revealed until primary route failure	[HOW-16]		125
+                                All transmission media should be polled or tested automatically, including secondary routes	[REQ-12]		709
+                            A redundant pathway performs correctly upon failure of the primary, but a conflict occurs on the restoration primary when one or more systems fail to revert	[HOW-17]		126
+                                All systems using the transmission media must determine the currently active route prior to commencing normal operation	[REQ-13]		710
+                    Type 3 Scenario: Apollo sends brake command but command it is not received by the actuator	[CS-4]		127
+                        Improper Execution: The command is not received due to a data / signal collision or overflow	[FB-13]		129
+                            A buffering mechanism, combined with a temporary route loss, causes a route to be flooded with stale commands	[HOW-18]		132
+                                Buffered transmission must be accomplanied by a buffer purge when the route fails for longer > than TBD seconds	[REQ-14]		711
+                            The use of persistent send / send upon analogue change causes a rate of transmission that overloads the transmission medium	[HOW-19]		133
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		712
+                                Analogue values should be transmitted cyclically, or a change threshold should be applied 	[REQ-16]		713
+                            The use of excessive bandwidth by other systems on a shared transmission medium overloads the transmission medium	[HOW-20]		134
+                                Critical systems should take priority over non-critical systems when using the transmission media	[REQ-17]		714
+                    Type 4 Scenario: Apollo sends the command which is executed by the actuator, but the contolled process does not respond correctly	[CS-5]		149
+                        Improper Process response: the wheels hydroplane so no braking is applied	[FB-17]		150
+                            The road is covered with standing water; the tyres loose contact with the ashphalt	[HOW-30]		151
+                                The autonomous system must be equipped with sensors and algorithms capable of detecting standing water, in order to slow down before entering	[REQ-18]		715
+                            An oil / water mix is present after a heavy shower; the tyres loose contact with the ashphalt	[HOW-31]		152
+                                The autonomous system must be capable of detecting when there is or has been heavy rain, in order to accound for reduced traction	[REQ-19]		716
+                    Type 4 Scenario: Apollo sends the command which is executed by the actuator, but the contolled process does not respond correctly	[CS-5]		153
+                        Improper Process response: the controlled process does not respond due to an auxiliary systems failure	[FB-18]		154
+                            An critical auxiliary system, not on the control path, such as a hydraulic pump, compressor, or fluid line has failed	[HOW-32]		155
+                                Critical auxiliary systems must be designed and tested for operational reliability	[REQ-20]		717
+            True Statement from the CA context: It is necessary for the vehicle to brake, Apollo sends the correct command when a DataSpeed override is active - the human driver does not intercede	[TRUE-6]		156
+                The human driver believes that Apollo has command control of the vehicle - Apollo believes it has command control of the vehicle	[BEL-8]		157
+                    Type 3 Scenario: Apollo sends brake command but command it is not received by the actuator	[CS-4]		158
+                        Command rejection: the command is not received because it is discarded by DataSpeed	[FB-19]		159
+                            The human driver pressed the brake previously, but believes that they pressed the brake below the override threshold	[HOW-33]		160
+                                The human driver should be warned (acoustically or visually) when they are about to exceed the override threshold	[REQ-21]		718
+                                The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated	[REQ-22]		719
+                            The human driver stands ready with their foot resting on the brake pedal, but is not aware that they pushed it at all	[HOW-34]		161
+                                The human driver should be warned (acoustically or visually) when they are about to exceed the override threshold	[REQ-21]		720
+                                The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated	[REQ-22]		721
+                            The safety monitor has pushed the e-stop button, but the human driver is not aware of this	[HOW-35]		162
+                                Both the driver and safety driver e-stop buttons should activate a klaxon or other warning device to signal all channels are overridden	[REQ-23]		722
+                            Short term, incorrect feedback from the vehicle triggers a brake channel override	[HOW-39]		179
+                                The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated	[REQ-22]		723
+                            Incorrect parameters in a non braking system, cause other system feedback to be misinterpretted as a brake feedback - DataSpeed engages override 	[HOW-40]		180
+                                All system commands must be mainted in a master I/O schedule that, where practicable, uses unique addressing for each component and command	[REQ-8]		724
+                The human driver is aware of the DataSpeed override, but believes that the Safety Monitor has disengaged it	[BEL-9]		163
+                    Type 3 Scenario: Apollo sends brake command but command it is not received by the actuator	[CS-4]		164
+                        Command rejection: the command is not received because it is discarded by DataSpeed	[FB-19]		165
+                            The safety monitor believes that s/he has disengaged the override, but the command was unsuccessful	[HOW-36]		166
+                                The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated	[REQ-22]		725
+                            The safety monitor attempts to disengage the override, but the driver e-stop has not been disengaged	[HOW-37]		167
+                                E-stop controls should be non-latching since DataSpeed requires the override to be manually disabled already	[REQ-24]		726
+                            The safety monitor attempts to disengage the override, but their own own e-stop has not been disengaged	[HOW-38]		168
+                                E-stop controls should be non-latching since DataSpeed requires the override to be manually disabled already	[REQ-24]		727
+            True Statement from the CA context: It is necessary for the vehicle to brake, Apollo sends the correct command when an override is active - the override was previously disengaged	[TRUE-8]		181
+                The human driver is aware of the DataSpeed override and the Safety Monitors attempts to disengage it, but is not aware that this disengagement has already occurred	[BEL-10]		182
+                    Type 3 Scenario: Apollo sends brake command but command it is not received by the actuator	[CS-7]		183
+                        Command rejection: the command is not received because it is discarded by DataSpeed	[FB-20]		184
+                            The safety monitor disengages the override, but the human driver is unaware of this and brakes - this re-engages this override	[HOW-41]		186
+                                The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated	[REQ-22]		728
+        Apollo does not provide the brake command when it is unsafe to do so (later rendered unsafe by providing)	[CA-6.2]		174
+            True Statement from the CA context: It is unsafe to provide the brake control	[TRUE-7]		175
+                [Belief is not required here]	[BEL-10001]		177
+                    Type 3 scenario: Apollo does not send a braking command, but the actuator receives a braking command	[CS-6]		178
+                        Improper Execution: A command is received due to an error in the transmission medium	[FB-21]		185
+                            A protocol converter or relay performs an incorrect operation or inversion on a transmitted signal 	[HOW-42]		187
+                                Data types and formats should be kept consistent from command source through to actuator; unnecessary protocol conversion should be eliminated	[REQ-25]		729
+                            A mechanical fault causes cross talk between transmission media	[HOW-43]		188
+                                Transmission media should be rigorously isolated and designed and tested for operational reliability	[REQ-26]		730
+                    Type 3 scenario: Apollo does not send a braking command, but the actuator receives a braking command	[CS-6]		189
+                        Improper Execution: A transmitter sends a buffered command following communication loss or power outage	[FB-22]		190
+                            A buffering mechanism causes a route to be flooded with stale commands that result in the brakes responding to a historical command	[HOW-44]		191
+                                Buffered transmission must be accomplanied by a buffer purge when the route fails for longer > than TBD seconds	[REQ-14]		731
+                    Type 3 scenario: The actuator does not receive a braking command, but the actuator applies braking	[CS-8]		192
+                        Improper Execution: The brakes are applied in error with no command received	[FB-23]		194
+                            A clock resynchronisation causes a finite discontinuity in the actuator; a historical command is executed	[HOW-45]		195
+                                Any brake actuator buffers should routinely purge data on a FIFO basis	[REQ-6]		732
+                            An unknown command state occurs; the default action is to apply the brakes	[HOW-46]		196
+                                The brake actuators must not default to braking upon an unknown command state	[REQ-27]		733
+                            A electronic / mechanical failure causes the brakes to apply arbitrarily	[HOW-47]		197
+                                Physical brake actuators must be designed must be designed and tested to be operationally reliable	[REQ-1]		734
+                    Type 3 scenario: Apollo does not send a braking command, but the actuator receives a braking command	[CS-6]		198
+                        Improper Execution:  Another controller sends a brake command in error	[FB-24]		200
+                            An incorrectly configured controller activates the brakes in error	[HOW-48]		201
+                                All system commands must be mainted in a master I/O schedule that, where practicable, uses unique addressing for each component and command	[REQ-8]		735
+                            The human driver activates the brakes in error	[HOW-49]		202
+                                The human driver should be constantly alert but should not cover the pedals unless braking may be likely	[REQ-28]		736
+        Apollo provides the braking command at the necessary level to ensure vehicle safety (later rendered unsafe by insufficient / excessive provision)	[CA-6.3]		204
+            True statement from the CA context: A specific level of braking is required, but it is not applied by the acutuator	[TRUE-9]		205
+                [Belief is not required here]	[BEL-10001]		206
+                    Type 4 Scenario: Apollo sends the command which is executed by the actuator, but the contolled process does not respond correctly	[CS-5]		217
+                        Improper Process response: the controlled process does not respond due to an auxiliary systems failure	[FB-18]		219
+                            An critical auxiliary system, not on the control path, such as a hydraulic pump, compressor, or fluid line has failed	[HOW-32]		222
+                        Improper process response: The wheels hydroplane or skid, leading to reduced braking effectiveness 	[FB-32]		218
+                            The road is covered with standing water; the tyres loose contact with the ashphalt	[HOW-30]		220
+                                The autonomous system must be equipped with sensors and algorithms capable of detecting standing water, in order to slow down before entering	[REQ-18]		743
+                            An oil / water mix is present after a heavy shower; the tyres loose contact with the ashphalt	[HOW-31]		221
+                                The autonomous system must be capable of detecting when there is or has been heavy rain, in order to accound for reduced traction	[REQ-19]		744
+                    Type 3 scenario: Apollo sends the braking command correctly, but insufficient / excessive braking is applied by the actuator	[CS-9]		207
+                        Improper execution: The actuator applies insufficicient / excessive braking due to incorrect configuration	[FB-25]		208
+                            An incorrect configuration becomes active when the actuator's primary configuration storage medium fails	[HOW-50]		209
+                                Factory configuration should be used in the brake actuators with scaling changes applied in the controller, where practicable	[REQ-29]		737
+                            A firmware over the air update is not executed correctly, and an incorrect configuration becomes active	[HOW-51]		210
+                                All FOTA methods should have a cyclic check and automatic roll-back method in the event of a failed download	[REQ-30]		738
+                            A scaling or knee-point is applied incorrectly, resulting in an incorrect braking level	[HOW-52]		211
+                                Factory configuration should be used in the brake actuators with scaling changes applied in the controller, where practicable	[REQ-29]		739
+                    Type 3 scenario: Apollo sends the braking command correctly, but insufficient / excessive braking is applied by the actuator	[CS-9]		212
+                        Improper execution: The actuator receives and incorrect command due to corruption in the transmission medium	[FB-26]		213
+                            A protocol converter or relay performs an incorrect operation or inversion on a transmitted signal 	[HOW-42]		214
+                                Transmission media should be rigorously isolated and designed and tested for operational reliability	[REQ-26]		740
+                            A mechanical fault causes cross talk between transmission media	[HOW-43]		215
+                                Transmission media should be rigorously isolated and designed and tested for operational reliability	[REQ-26]		741
+                            A buffering mechanism causes a route to be flooded with stale commands that result in the brakes responding to a historical command	[HOW-44]		216
+                                Any brake actuator buffers should routinely purge data on a FIFO basis	[REQ-6]		742
+        Apollo provides the braking command at the correct time to ensure vehicle safety	[CA-6.4]		223
+            True statement from the CA context: The braking command is issued prompty, but braking is applied too late	[TRUE-10]		224
+                [Belief is not required here]	[BEL-10001]		225
+                    Type 3 scenario: Apollo sends the braking command correctly, but the command is received too late by the actuator	[CS-10]		226
+                        Improper Execution: Transmission medium error causes the command to be received too late	[FB-27]		227
+                            A primary command pathway suffers an intermittent fault; oscillation of the in-service transmitters and pathways delays command reception	[HOW-26]		228
+                                A primary command pathway should not automatically activate on restoration if the secondary has not failed and the routes are otherwise identical	[REQ-31]		745
+                            A primary command pathway has failed; the secondary pathway has an incorrectly parameterised capacity / baud rate, delaying command reception	[HOW-55]		241
+                                All transmission media should be polled or tested automatically, including secondary routes	[REQ-12]		746
+                            Transmission medium fault causes intermittent data loss that slows down overall performance below the required specification	[HOW-56]		246
+                                A transmission media that has degraded to the point where it impacts safety must be considered failed	[REQ-32]		747
+                        Improper Execution: The command is received too slowly due to a data / signal collision or overflow	[FB-31]		242
+                            A buffering mechanism, combined with a temporary route loss, causes a route to be flooded with stale commands	[HOW-18]		243
+                                Buffered transmission must be accomplanied by a buffer purge when the route fails for longer > than TBD seconds	[REQ-14]		748
+                            The use of persistent send / send upon analogue change causes a rate of transmission that overloads the transmission medium	[HOW-19]		244
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		749
+                            The use of excessive bandwidth by other systems on a shared transmission medium overloads the transmission medium	[HOW-20]		245
+                                Critical systems should take priority over non-critical systems when using the transmission media	[REQ-17]		750
+                    Type 3 scenario: Apollo sends the braking command correctly, but the command is applied too late by the actuator	[CS-11]		233
+                        Improper Execution: The actuator responds too slowly due to data / buffer overload in the actuator	[FB-28]		234
+                            The actuator continues to process / discard now out-of-date commands, the buffered command is not reached in time	[HOW-53]		235
+                                The brake command transmission rate should not exceed the rate at which the brake actuators can process commands 	[REQ-5]		751
+                                Any brake actuator buffers should routinely purge data on a FIFO basis	[REQ-6]		752
+                        Improper execution: The actuator responds too slowly due to a power system under voltage	[FB-29]		236
+                            Battery / alternator system failure	[HOW-21]		237
+                                The battery / alternator power system must be designed and tested to be operationally 	[REQ-2]		753
+                            Mechanical damage to the power supply route	[HOW-22]		238
+                                The power supply route to the brake actuators must be redundant if practicable	[REQ-3]		754
+                        Improper execution: The actuator responds too slowly due to a mechanical fault	[FB-30]		239
+                            A mechanical fault causes the physical part of the actuator to respond too slowly	[HOW-54]		240
+                                Physical brake actuators must be designed must be designed and tested to be operationally reliable	[REQ-1]		755
+        Apollo provides the braking command for the correct duration in order to ensure vehicle safety	[CA-6.5]		247
+            True statement from the CA context: The application of braking is ended too quickly	[TRUE-11]		248
+                [Belief is not required here]	[BEL-10001]		250
+                    Type 3 scenario: Apollo applies the brake command for the correct duration, but the actuator stops too early	[CS-12]		252
+                        Improper Execution: The actuator does not respond due to data / buffer overload in the actuator	[FB-15]		260
+                            A buffer overflow in the actuator triggers a command purge that results in the command ending too soon	[HOW-59]		261
+                                Any brake actuator buffers should routinely purge data on a FIFO basis	[REQ-6]		757
+                        Improper execution: The actuator has failed and cannot sustain braking	[FB-33]		254
+                            A mechanical fault causes the brakes to release too soon	[HOW-57]		257
+                                Physical brake actuators must be designed must be designed and tested to be operationally reliable	[REQ-1]		756
+            True statement from the CA context: The application of braking goes on too long	[TRUE-12]		249
+                [Belief is not required here]	[BEL-10001]		251
+                    Type 3 scenario: Apollo applies the brake command for the correct duration, but the actuator releases the brakes too late	[CS-13]		253
+                        Improper Execution: The actuator does not respond due to data / buffer overload in the actuator	[FB-15]		258
+                            Queued commands in the actuator continue to be executed beyond the required duration of the command	[HOW-58]		259
+                                The brake command transmission rate should not exceed the rate at which the brake actuators can process commands 	[REQ-5]		759
+                                Any brake actuator buffers should routinely purge data on a FIFO basis	[REQ-6]		760
+                        Improper execution: The actuator has failed releases braking too slowly	[FB-34]		255
+                            A mechanical fault causes the physical part of the brake actuator to sieze	[HOW-13]		256
+                                Physical brake actuators must be designed must be designed and tested to be operationally reliable	[REQ-1]		758
+        Apollo does not provide the brake control action when relative velocity and distance to an obstacle mean that a collision is imminent.	[UCA-6.1]	[H-2] [H-3] [H-4] 	23
+            True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector that indicate a collision	[TRUE-1]		24
+                Apollo incorrectly believes that the relative velocity is lower than in reality	[BEL-1]		25
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		31
+                        Information received: The feedback received has a conflict	[FB-1]		32
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		33
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		761
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		26
+                        Information received: The feedback received is insufficient to accurately determine the relative velocity	[FB-2]		27
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		28
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		762
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		29
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		764
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		30
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		765
+                            One or more sensors suffer an internal failure	[HOW-5]		54
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		766
+                Apollo incorrectly believes that the relative distance is higher than in reality	[BEL-2]		34
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		35
+                        Information received: The feedback received is insufficient to accurately determine the relative distance	[FB-3]		36
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		37
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		767
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		55
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		768
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		56
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		769
+                            One or more sensors suffer an internal failure	[HOW-5]		57
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		770
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		58
+                        Information received: The feedback received has a conflict	[FB-1]		59
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		60
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		771
+                Apollo incorrectly believes that the obstacle will clear the vehicle’s path	[BEL-3]		62
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		63
+                        Information received: Feedback indicates that the obstacle and vehicle will not cross paths	[FB-4]		64
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		65
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		772
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		66
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		773
+                Apollo incorrectly believes that there is no obstacle in its path	[BEL-12]		796
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		797
+                        Information received: The feedback received is insufficient to determine that there is an obstacle in the vehicles path	[FB-36]		798
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		799
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		802
+                            Optical systems are offline, reporting stale data, or transmission is delayed	[HOW-10]		800
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		803
+                            An 'obstacle' such as a human being enters the field of view, but collapses to the floor, outside of the field of view of the sensors	[HOW-61]		801
+                                Apollo and its sensors must be capable of detecting fallen pedestrians in order to prevent fatality	[REQ-44]		804
+            True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector that indicate a collision will occur given *adverse weather or environmental conditions*	[TRUE-2]		67
+                Apollo incorrectly identifies or ignores adverse weather / environmental conditions	[BEL-4]		68
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		75
+                        Information received: Feedback is sufficient to determine the current weather / environmental conditions	[FB-6]		78
+                            The sensors present images / points / data with sufficient clarity to deduce the conditions, but the the algorithm is not equipped to look for black ice, leaves, water, unforeseen spillages or environmental debris	[HOW-8]		79
+                                Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-36]		774
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		69
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		70
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		71
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		775
+        Apollo does not provide brake control when in autonomous mode and vehicle speed exceeds limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)	[UCA-6.2]	[H-1] [H-2] [H-3] [H-4] [H-6] 	38
+            True statement from UCA context: Vehicle is rapidly approaching / traversing a corner or bend in the road at excessive speed	[TRUE-3]		80
+                Apollo incorrectly believes that the vehicle is in a different location	[BEL-5]		81
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		82
+                        Information received: The feedback received does not indicate a vehicle location corresponding to a road-path manoeuvre	[FB-7]		83
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		84
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		776
+                            Optical systems are offline, reporting stale data, or transmission is delayed	[HOW-10]		85
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		777
+                Apollo incorrectly believes that the road path curvature radius is higher than in reality	[BEL-6]		86
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		87
+                        Infromation received: The feedback received is insufficient to determine the road curvature radius	[FB-8]		88
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		89
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		778
+                            One or more sensors suffer an internal failure	[HOW-5]		91
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		779
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		92
+                        Information received: The feedback received is sufficient to determine the road curvature radius	[FB-9]		93
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		102
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		780
+                            The mathematical calculations inside Apollo fail to process the data correctly	[HOW-11]		94
+                                Apollo must be able to resolve complex 3D structures from the sensor data with which it is provided	[REQ-39]		781
+                            The Apollo algorithm does not attempt to calculate road curvature within its process model, relying on other data, such as map position, deducing an incorrect curvature due to inaccurate positioning or an out-of-date map	[HOW-12]		95
+                                Apollo and its sensors must be capable of determining the correct right of way, including route curvature, from sensors alone	[REQ-40]		782
+                Apollo incorrectly believes that the vehicle speed is lower than in reality	[BEL-7]		96
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		97
+                        Information received: The feedback received is insufficient to accurately determine the determine the vehicle velocity	[FB-10]		98
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		100
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		783
+                            Vehicle speed sensors suffer an internal failure	[HOW-6]		103
+                                The vehicle speed sensors are critical and must be redundant and designed and test for operational reliability	[REQ-41]		784
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		101
+                                Apollo must be able to resolve complex 3D structures from the sensor data with which it is provided	[REQ-39]		785
+            Vehicle is approaching or traversing a corner or bend in the road at standard speed when adverse weather or environmental conditions render this speed excessive	[TRUE-4]		104
+                Apollo incorrectly identifies or ignores adverse weather / environmental conditions	[BEL-4]		105
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		106
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		107
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		108
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		786
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		112
+                        Information received: Feedback is sufficient to determine the current weather / environmental conditions	[FB-6]		113
+                            The sensors present images / points / data with sufficient clarity to deduce the conditions, but the the algorithm is not equipped to look for black ice, leaves, water, unforeseen spillages or environmental debris	[HOW-8]		114
+                                Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-36]		787
+        Apollo does not provide brake control when in autonomous mode, the vehicle is stationary, and vehicle path is not clear	[UCA-6.3]	[H-2] [H-3] [H-4] 	39
+            True statement from UCA context: Apollo is parked at a traffic lights at red but does not apply brakes as required by driving code *(human driver would be required to apply the handbrake)*	[TRUE-13]		262
+                Apollo incorrectly believes the 'lights' are at green	[BEL-11]		263
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		264
+                        Information received: The feedback received is insufficient to determine that the traffic lights are at red	[FB-35]		265
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		266
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		788
+                            Optical systems are offline, reporting stale data, or transmission is delayed	[HOW-10]		268
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		789
+                            There is more than one traffic light in the field of view, leading to a conflict between one or more sensors	[HOW-60]		270
+                                Sensors must be capable of distinguishing the traffic lights applicable to the to the selected right of way from many potential candidates	[REQ-42]		790
+                            The 'lights' are not lights at all, but a workman holding a 'STOP / GO' sign	[HOW-112]		791
+                                Apollo and it sensors must be capable of resolving temporary traffic lights, including signs held by workmen, independently of map data	[REQ-43]		792
+                Apollo incorrectly believes that there is no obstacle in its path	[BEL-12]		271
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		272
+                        Information received: The feedback received is insufficient to determine that there is an obstacle in the vehicles path	[FB-36]		273
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		274
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		793
+                            Optical systems are offline, reporting stale data, or transmission is delayed	[HOW-10]		275
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		794
+                            An 'obstacle' such as a human being enters the field of view, but collapses to the floor, outside of the field of view of the sensors	[HOW-61]		276
+                                Apollo and its sensors must be capable of detecting fallen pedestrians in order to prevent fatality	[REQ-44]		795
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		277
+                        Apollo processes data received too slowly, such that the data processed already reflects an earlier physical scenario that is now inappropriate	[FB-37]		278
+                            Inadequate hardware specifications	[HOW-62]		279
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		805
+                            A burst of activity causes Apollo to suffer a data overload	[HOW-63]		280
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		806
+                        Incorrect reconciliation of optical and other range-finding techniques causes incorrect obstacle tracking	[FB-38]		281
+                            Incorrect time stamping of data leads to a framing conflict	[HOW-64]		282
+                                All data received must correctly assembled into the relevant frame	[REQ-46]		807
+                            Obstacles are incorrectly identified and so cannot be tracked effectively	[HOW-65]		283
+                                Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle	[REQ-47]		808
+        Apollo does not provide brake control when in autonomous mode and the vehicle has reached the final destination	[UCA-6.4]	[H-7] 	40
+            True statement from UCA context: The vehicle has reached the route destination	[TRUE-14]		284
+                Apollo mistakenly believes that it is in a different location than in reality	[BEL-13]		285
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		286
+                        Information received: The feedback received is insufficient to determine the vehicle location	[FB-39]		287
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		288
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		809
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		289
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		810
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		290
+                        Apollo does not apply the brake	[FB-40]		291
+                            The controller algorithm identifies the end of the journey, but is not programmed to provide the brake at the end of the the journey	[HOW-66]		292
+                                Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey	[REQ-48]		811
+                            The controller receives adequate feedback but does not correctly identify the end of the journey	[HOW-67]		293
+                                Apollo must be capable of identifying the journey's end, and able to identify a safe stopping location	[REQ-49]		812
+        Apollo does not provide brake control when in autonomous mode and collision occurs	[UCA-6.6]	[H-1] [H-2] [H-3] [H-4] [H-5] 	41
+            True statement from UCA context: The vehicle has suffered a collision and must stop (if only to comply with highway regulation)	[TRUE-15]		294
+                Apollo incorrectly believes that no collision has taken place	[BEL-14]		295
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		303
+                        Information received: The vehicle sensors report a collision or critical vehicle damage state	[FB-44]		304
+                            No collision contingency exists i.e. the vehicle is not programmed to brake, then engage neutral followed by the parking brake (standard emergency stop procedure in the UK)	[HOW-70]		305
+                                Apollo must bring the vehicle to rest and apply the parking brake after a collision	[REQ-52]		815
+                            Failure to stop after a collision is an offence in most countries; this is not accounted for and the vehicle attempts to move off	[HOW-71]		306
+                                Apollo must not move off after a collision, unless instructed to do so by the human occupants	[REQ-53]		816
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		296
+                        Information received: The feedback received is insufficient to determine that a crash has taken place	[FB-41]		297
+                            The collision itself has compromised the sensors that were designed to detect the collision	[HOW-68]		298
+                                Apollo's collision sensors must still be capable of reporting a collision even when extensive damage to the vehicle has taken place	[REQ-50]		813
+                            The collision has managed to happen in a manner which is not detected by the sensors, but still represents a critical failure, could include: a broken windscreen, an item impaling the engine or passenger compartment, bumper or exhaust hanging off (in the case of a rear collision)	[HOW-69]		299
+                                Apollo must be capable of detecting less severe collisions that do not immediately threaten life but require immediate attention, such as a broken windscreen, loose exhaust, etc	[REQ-51]		814
+                    Type 2 scenario: Necessary controller / feedback information does not exist	[CS-15]		300
+                        Specific collision sensors have not been built into the vehicle design	[FB-42]		301
+                        Collision sensors exist, but have not been routed through the appropriate data interfaces	[FB-43]		302
+        Apollo provides brake command with insufficient amount of braking below the minimum amount needed to avert a forward collision	[UCA-6.7]	[H-2] [H-3] [H-4] 	203
+            True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector such that the vehicle will not be brought to rest in time to avert a collision	[TRUE-16]		307
+                Apollo incorrectly believes that the relative velocity is lower than in reality	[BEL-1]		309
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		310
+                        Information received: The feedback received is insufficient to accurately determine the relative distance	[FB-3]		311
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		312
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		817
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		313
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		818
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		314
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		819
+                            One or more sensors suffer an internal failure	[HOW-5]		315
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		820
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		316
+                        Information received: The feedback received has a conflict	[FB-1]		317
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		318
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		821
+                Apollo incorrectly believes that the relative distance is higher than in reality	[BEL-2]		308
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		319
+                        Information received: The feedback received is insufficient to accurately determine the relative distance	[FB-3]		320
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		322
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		822
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		323
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		823
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		324
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		824
+                            One or more sensors suffer an internal failure	[HOW-5]		326
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		825
+                        Information received: the current data reflects a time when the distance to the obstacle was greater	[FB-45]		327
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		330
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		827
+                            The data from the sensors is delayed at source due to poor sensor performance	[HOW-72]		329
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		826
+                            The data is delayed entering into the Apollo software due to a data bottleneck in the hardware platform	[HOW-73]		332
+                                Apollo hardware must be capable of receiving and processing the maximum data throughput of all its data buses	[REQ-54]		828
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		333
+                        Information received: The feedback received has a conflict	[FB-1]		334
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		335
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		829
+                Apollo incorrectly believes that the deceleration needed is lower than in reality	[BEL-15]		336
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		337
+                        Information received: All the necessary feedback to calculate the relevant trajectories was received	[FB-46]		338
+                            The control algorithm does not adapt sufficiently quickly to calculate the obstacle dynamics, where an obstacle decelerates rapidly, so that the braking amount is underestimated	[HOW-74]		339
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		830
+                Apollo incorrectly believes that it is applying an amount of deceleration different to reality	[BEL-16]		340
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		341
+                        Apollo algorithm brake percentage is not correctly calibrated for the vehicle, and does not adapt heuristically as a human would	[FB-47]		342
+                        Vehicle mass is much higher than normal due to heavy loading, which is not accounted for in the algorithm	[FB-48]		343
+                        A mechanical failure causes incorrect braking but the algorithm does not account for this by increasing the braking amount	[FB-49]		344
+                Apollo incorrectly believes that the obstacle will clear the vehicle’s path	[BEL-17]		345
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		346
+                        Information received: Feedback indicates that the obstacle and vehicle will not cross paths	[FB-50]		347
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		349
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		831
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		350
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		832
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		351
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		833
+                            One or more sensors suffer an internal failure	[HOW-5]		352
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		834
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		348
+                        Information received: All the necessary feedback to calculate the relevant trajectories was received	[FB-46]		353
+                            Some lag in processing coupled with a sudden change in direction of the obstacle lead to insufficient braking being calculated	[HOW-75]		354
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		835
+                                Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle	[REQ-47]		836
+            True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector such that the vehicle will not be brought to rest in time to avert a collision *in adverse weather conditions*	[TRUE-17]		355
+                Apollo incorrectly identifies adverse weather / road conditions, and therefore incorrectly believes that it is applying an amount of deceleration different to reality	[BEL-18]		356
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		357
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		358
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		359
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		837
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		363
+                        Control model does not account for adverse weather conditions when determining the amount of braking to apply, and does not heuristically account for the deficit	[FB-51]		364
+                            [How is not required here]	[HOW-10001]		838
+                                Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-36]		839
+        Apollo provides brake command when autonomous driving is not active (off, standby, overridden, or e-stop)	[UCA-6.8]	[H-3] [H-4] [H-5] [H-6] 	365
+            True statement from UCA context: The vehicle is moving and the human driver takes control, but Apollo continues to brake	[TRUE-18]		366
+                Apollo incorrectly believes that autonomous mode is (should be) active	[BEL-19]		367
+                    Type 2 scenario: Necessary controller / feedback information does not exist	[CS-15]		368
+                        Information received: vehicle overrides were external to Apollo – Apollo is unaware of override conditions	[FB-52]		369
+                            The human driver has overridden control on one or more control paths, but this does not include the brakes and so braking commands are still sent	[HOW-76]		370
+                                Apollo must be made aware of channel overrides and be able to account for them	[REQ-55]		840
+                            After an emergency override of all controls, no feedback is presented to Apollo, such that when the mode is disengaged Apollo will issue controls without autonomous mode being reactivated	[HOW-77]		371
+                                A total DataSpeed e-stop should be fed back to Apollo and Apollo should disengage automatic mode	[REQ-56]		841
+        Apollo provides brake control when vehicle speed does not exceed limits (speed limit, traffic flow limit, manoeuvre limit, planned test limit, etc.), there is no obstacle, no faults, destination is reachable, and vehicle has not reached destination	[UCA-6.9]	[H-4] 	372
+            True statement from UCA context: there is no need to apply the brakes – no obstacles, the speed limit has not changed, and the vehicle is not going down hill	[TRUE-19]		373
+                Apollo incorrectly believes that an obstacle is present in the roadway	[BEL-20]		374
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		375
+                        Information received: The feedback is a sensor ghost, corresponding to a forward obstacle	[FB-53]		376
+                            A sensor error is causing a ‘ghost’ object to appear, where delayed or cached feedback is sent to Apollo describing an object that is no longer there	[HOW-78]		377
+                                Sensors should purge buffered data after TBD ms in order to prevent sensor ghosting	[REQ-57]		842
+                Apollo incorrectly believes that it has entered a new speed limit zone	[BEL-21]		379
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		380
+                        Information received: The feedback received is insufficient to determine the vehicle location	[FB-39]		381
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		382
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		843
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		383
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		844
+                            The position data is correct but the map (containing speed zone information) itself is incorrect	[HOW-79]		384
+                                Apollo must have regular access to map updates so that detailed information is up-to-date	[REQ-58]		845
+                        Information received: The feedback is insufficient to accurately identify and read a speed limit display or sign	[FB-54]		385
+                            Sensors lack the finesse to correct identify signage, resulting in a misread speed limit sign, or some other signage as a speed limit	[HOW-80]		386
+                                Apollo and its sensor must be capable of identifying and reading speed limit signs, variable speed limit signs and advisories	[REQ-59]		846
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		390
+                        Apollo systems misread some object as a speed limit sign	[FB-55]		391
+                        Apollo systems misread a valid speed limit	[FB-56]		392
+                Apollo incorrectly believes that the vehicle is going down hill	[BEL-22]		393
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		394
+                        Information received: The feedback received corresponds to some rate of change of altitude	[FB-57]		395
+                            Barometric / IMU / pitch sensors present information corresponding to descent which is incorrect	[HOW-81]		396
+                                Apollo sensors must be capable of detecting a rate of change of altitude	[REQ-60]		847
+            True statement from UCA context: there is no need to apply the brakes – the speed limit zone has changed, but the speed restriction does not apply at the current time (for example, a school zone on a Saturday)	[TRUE-20]		397
+                Apollo incorrectly believes that it has entered a new speed limit zone, but the time restrictions do not apply	[BEL-23]		398
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		399
+                        Information received: The speed limit sign or limit boundary is resolvable in the feedback	[FB-58]		400
+                            The system time is incorrect	[HOW-82]		402
+                                The vehicle on-board time master clock must be routinely and accurately synchronised to UTC	[REQ-61]		848
+                            Apollo slows down for e.g. a school zone outside of the school’s operating hours, because the algorithm does not account for the time dependency of speed limit zones	[HOW-83]		403
+                                Apollo algorithm must take account of time-dependent access and speed limits, for example school zones and bus lanes	[REQ-62]		849
+        UCA-6.10: Apollo provides brake control when driver is providing throttle	[UCA-6.10]	[H-4] [H-5] [H-6] 	378
+            True statement from UCA context: The human driver feels it best to accelerate e.g. for safety reasons	[TRUE-21]		404
+                Apollo incorrectly believes that it is safe to apply the brakes while the driver is accelerating	[BEL-24]		405
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		408
+                        Information received: Apollo receives feedback of the human intervention	[FB-60]		409
+                            Apollo disregards human actions and applies the brakes anyway	[HOW-84]		410
+                                Apollo must detect a human application of throttle and not apply the brakes	[REQ-63]		851
+                    Type 2 scenario: Necessary controller / feedback information does not exist	[CS-15]		406
+                        The feedback that a manual acceleration is taking place is not passed to Apollo	[FB-59]		407
+                            Apollo continues to drive in automatic mode - throttle commands from the human are not affected by brake commands from Apollo	[HOW-85]		411
+                                Apollo must detect a human application of throttle and not apply the brakes	[REQ-63]		850
+        Apollo provides excessive brake command when wheel lock has occurred and lateral control is needed  (rationale: ABS may not work below 5mph or other situations)	[UCA-6.11]	[H-1] [H-2] [H-4] [H-6] 	412
+            True statement from UCA context: Apollo is applying brakes to slow down, in the context of an ABS failure to activate while the wheels are slipping	[TRUE-22]		420
+                Apollo incorrectly believes applying maximum brake will lead to the quickest deceleration	[BEL-25]		421
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		422
+                        Information received: Apollo receives feedback that ABS is healthy	[FB-61]		423
+                            The ABS actuator unit is supplying incorrect feedback	[HOW-86]		424
+                                The ABS unit should be monitored via robust means such as an externally wetted life contact, and the feedback supplied to Apollo	[REQ-64]		852
+                            The ABS actuator has failed but its state is not monitored in the feedback chain	[HOW-87]		425
+                                The ABS unit should be monitored via robust means such as an externally wetted life contact, and the feedback supplied to Apollo	[REQ-64]		853
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		426
+                        Information received: The feedback is received that ABS has failed, but does not take this into account	[FB-62]		427
+                            The algorithm does not account for ABS failure in its brake calculations	[HOW-88]		428
+                                Apollo must account for ABS availability when deciding braking level	[REQ-65]		854
+        Apollo provides brake command with insufficient amount of braking to reduce vehicle speed within limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)	[UCA-6.12]	[H-1] [H-2] [H-3] [H-4] [H-6] 	413
+            True statement from UCA context: Vehicle is rapidly approaching / traversing a corner or bend in the road at excessive speed	[TRUE-3]		429
+                Apollo incorrectly believes that the vehicle is in a different location	[BEL-5]		430
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		431
+                        Information received: The feedback received indicates a greater distance to the path manoeuvre than in reality	[FB-63]		432
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		436
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		855
+                            Optical systems are offline, reporting stale data, or transmission is delayed	[HOW-10]		437
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		856
+                Apollo incorrectly believes that the road path curvature radius is higher than in reality	[BEL-6]		438
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		441
+                        Information received: The feedback received is sufficient to determine the road curvature radius	[FB-9]		442
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		443
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		857
+                            The mathematical calculations inside Apollo fail to process the data correctly	[HOW-11]		444
+                                Apollo must be able to resolve complex 3D structures from the sensor data with which it is provided	[REQ-39]		858
+                            The Apollo algorithm does not attempt to calculate road curvature within its process model, relying on other data, such as map position, deducing an incorrect curvature due to inaccurate positioning or an out-of-date map	[HOW-12]		445
+                                Apollo and its sensors must be capable of determining the correct right of way, including route curvature, from sensors alone	[REQ-40]		859
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		439
+                        Infromation received: The feedback received is insufficient to determine the road curvature radius	[FB-8]		440
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		446
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		860
+                            One or more sensors suffer an internal failure	[HOW-5]		447
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		861
+                            The physical route has been revised, but the HD map was not updated due to a communications failure	[HOW-89]		448
+                                Apollo must have regular access to map updates so that detailed information is up-to-date	[REQ-58]		862
+                            The physical route has been revised, but the HD map was not updated due to a technician error	[HOW-90]		449
+                                Apollo's map source must be updates as soon as practicable when map data changes	[REQ-66]		863
+                Apollo incorrectly believes that the vehicle speed is lower than in reality	[BEL-7]		459
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		460
+                        Information received: The feedback received is insufficient to accurately determine the determine the vehicle velocity	[FB-10]		461
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		462
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		868
+                            Vehicle speed sensors suffer an internal failure	[HOW-6]		464
+                                The vehicle speed sensors are critical and must be redundant and designed and test for operational reliability	[REQ-41]		869
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		463
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		870
+                Apollo incorrectly believes that the path manoeuvre itself is required in a different location than in reality	[BEL-26]		450
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		451
+                        Information received: Apollo receives feedback or information corresponding to an incorrect manoeuvre location	[FB-64]		452
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		455
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		864
+                            One or more sensors suffer an internal failure	[HOW-5]		456
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		867
+                            The position data received is correct, but out-of-date map data indicates the manoeuvre in an incorrect location because the road layout or right-of-way has changed	[HOW-91]		453
+                                Apollo and its sensors must be capable of determining the correct right of way, including route curvature, from sensors alone	[REQ-40]		865
+                            Temporary roadworks / path diversions are not marked on the HD map such that Apollo will not slow down for, or avoid, a static obstacle until it is physically detected	[HOW-92]		454
+                                Apollo and its sensor must be capable of identying roadworks, police cordons, traffic accident scenes and following route markers such as cordons and lines of cones	[REQ-67]		866
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		457
+                        Algorithm flaw: Apollo has not been programmed or calibrated to respond to changes in the right-of-way, or temporary road layouts	[FB-65]		458
+            Vehicle is approaching or traversing a corner or bend in the road at standard speed when adverse weather or environmental conditions render this speed excessive	[TRUE-4]		465
+                Apollo incorrectly identifies or ignores adverse weather / environmental conditions - and believes that it is applying an amout of deceleration lower than in reality	[BEL-27]		466
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		467
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		468
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		469
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		871
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		470
+                        Information received: Feedback is sufficient to determine the current weather / environmental conditions	[FB-6]		471
+                            Control model does not account for adverse weather conditions when determining the amount of braking to apply, and does not heuristically account for the deficit	[HOW-93]		475
+                                Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-36]		872
+                Apollo incorrectly believes that the safe manoeuvre speed is higher than in reality because it has failed to identify adverse weather / road conditions	[BEL-28]		476
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		477
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		478
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		479
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		873
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		480
+                        Information received: Feedback is sufficient to determine the current weather / environmental conditions	[FB-6]		481
+                            Control model does not account for adverse weather conditions of the prevailing type when determining the safe speed limit for the upcoming manoeuvre	[HOW-94]		482
+                                Apollo must account for environmental conditions of the prevailing type when calculation the safe speed for manoeuvres	[REQ-68]		874
+            True statement from UCA context: The vehicle suffers a momentary instability which requires the reduction in the braking amount that is then rectified	[TRUE-23]		486
+                Apollo incorrectly believes that the vehicle is in a unstable state when it is not	[BEL-29]		487
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		488
+                        Information received: The feedback is insufficient to determine that the vehicle is / has become stable	[FB-66]		489
+                            Feedback from stability sensors lead to the brakes being released, but these were ‘locked’ in state leading to Apollo continuing to refrain from braking when it would now be safer to do so	[HOW-95]		490
+                                Vehicle stability must not be processed as a 'latched' condition	[REQ-69]		875
+                            The stability sensors have failed leading to stale or inaccurate feedback	[HOW-96]		491
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		876
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		492
+                        Information recevied: The feedback is sufficient to determine that the vehicle is stable	[FB-67]		493
+                            Apollo incorrectly amalgamates sensor data leading it to believe that the vehicle has become unstable	[HOW-97]		494
+                                Apollo must correctly derive the vehicle stability condition from the available sensors	[REQ-70]		877
+        UCA-6.13: Apollo provides a brake command that is excessive beyond the physical limit of the passengers	[UCA-6.13]		414
+            True statement from UCA context: Apollo causes the vehicle to decelerate rapidly enough to cause physical injury to the occupants, when it is unnecessary in the context of averting a worse collision	[TRUE-24]		495
+                Apollo believes it is applying normal braking	[BEL-30]		496
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		499
+                        Information received: after applying brakes, unexpected high brake level is applied - feedback is received that is sufficient to determine that the level of braking is excessive	[FB-69]		500
+                            Apollo fails to take into account feedback from inertial / velocity sensors, and to reduce the level of braking	[HOW-98]		501
+                                When braking Apollo must heuristically adapt the level of braking if the deceleration is too slow, or too rapid	[REQ-71]		878
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		497
+                        Algorithm flaw: Apollo is incorrectly calibrated such that applying brakes normally results in excessive braking	[FB-68]		498
+                            [How is not required here]	[HOW-10001]		890
+                                Apollo must be accurately calibrated for the braking system	[REQ-73]		891
+                Apollo incorrectly believes that a collision far worse is about to take place, full brakes are applied	[BEL-31]		502
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		503
+                        Information received: Feedback corresponding to a collision is received	[FB-70]		504
+                            Near miss collision data is interpreted as a collision due to slight time stamp errors, meaning that a moving vehicle in front is interpreted as static	[HOW-99]		505
+                                All data received must correctly assembled into the relevant frame	[REQ-46]		879
+                    Type 2 scenario: Apollo does not receive feedback / information when needed	[CS-16]		506
+                        Information received: Information corresponding to an obstacle is received late, requiring that the vehicle brake much more severely than would have been required had the information been received promptly	[FB-71]		508
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		509
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		880
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		510
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		881
+                            One or more sensors suffer an internal failure	[HOW-5]		511
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		882
+            True statement from UCA context: The vehicle is in a location where stopping is never appropriate when the path is open, such as a motorway / highway, when another vehicle has unavoidably stopped due to a brake down	[TRUE-25]		512
+                Apollo incorrectly believes that the vehicle in front has stopped due to traffic congestion	[BEL-32]		513
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		514
+                        Bulk traffic tracking fails: The vehicle pulls up behind a broken down vehicle rather than evading it, exacerbating the dangerous traffic build up	[FB-72]		515
+                            [How is not required here]	[HOW-10001]		888
+                                Apollo must be capable of distinguishing broken down vehicles from queuing traffic	[REQ-72]		889
+            True statement from UCA context: The vehicle is in a location where stopping is never appropriate when the path is open, such as a motorway / highway	[TRUE-26]		516
+                Apollo incorrectly believes that there is an obstacle configuration that constitutes slow or stationary traffic ahead	[BEL-33]		517
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		518
+                        Feedback received: Apollo receives feedback corresponding to a stationary / rapidly decelerating traffic ahead, in the bulk of the road	[FB-73]		519
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		520
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		883
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		521
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		884
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		522
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		885
+        Apollo provides brake control too late (TBD sec) after relative velocity and distance to an obstacle mean that a collision is imminent	[UCA-6.14]	[H-2] [H-3] [H-4] 	415
+            True statement from UCA context: An opportunity to brake in order to avoid a collision with an obstacle is being missed	[TRUE-27]		523
+                Apollo incorrectly believes that there is no present need to brake	[BEL-34]		524
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		535
+                        Information received: is insufficient to accurately determine the correct time to brake	[FB-76]		536
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		539
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		897
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		538
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		898
+                            One or more sensors suffer an internal failure	[HOW-5]		537
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		899
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		530
+                        Algorithm flaw: Apollo processes data received too slowly, such that the data processed already reflects an earlier physical scenario that is now inappropriate	[FB-75]		531
+                            Apollo has insufficient processor resources to process the data	[HOW-100]		532
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		886
+                            Apollo processor resources are unavailable	[HOW-101]		533
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		887
+                            Apollo software performance degrades over time due to a programming fault	[HOW-102]		534
+                                Where Apollo is required to access historic data, it must be ensured that e.g. the data is compatmentalized to avoid linearly growing seek times	[REQ-74]		892
+                        Algorithm flaw: Apollo fails to track a vehicle travelling at a relatively slow speed	[FB-77]		540
+                            The vehicle is temporarily obscured by a faster moving vehicle pulling in front of it, since visual contact is lost Apollo fails to slow down	[HOW-103]		541
+                                Apollo must be able to temporarily track objects that are momentarily out of view	[REQ-75]		893
+                    Type 2 scenario: Apollo does not receive feedback / information when needed	[CS-16]		525
+                        Information received: Apollo receives feedback of an upcoming obstacle too late	[FB-74]		526
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		527
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		894
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		528
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		895
+                            One or more sensors suffer an internal failure	[HOW-5]		529
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		896
+        Apollo provides braking control too late (> tbd seconds) prior to manoeuvre	[UCA-6.15]	[H-1] [H-2] [H-3] [H-4] [H-6] 	416
+            True statement from UCA context: An opportunity to brake in order to avoid a collision with an obstacle is being missed	[TRUE-28]		542
+                Apollo incorrectly believes that there is no present need to brake	[BEL-34]		543
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		552
+                        Algorithm flaw: Apollo processes data received too slowly, such that the data processed already reflects an earlier physical scenario that is now inappropriate	[FB-75]		553
+                            Apollo has insufficient processor resources to process the data	[HOW-100]		554
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		903
+                            Apollo processor resources are unavailable	[HOW-101]		555
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		904
+                            Apollo software performance degrades over time due to a programming fault	[HOW-102]		556
+                                Where Apollo is required to access historic data, it must be ensured that e.g. the data is compatmentalized to avoid linearly growing seek times	[REQ-74]		905
+                    Type 2 scenario: Apollo does not receive feedback / information when needed	[CS-16]		544
+                        Information received: Apollo receives feedback about an obstacle too late	[FB-78]		545
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		546
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		900
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		550
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		901
+                            One or more sensors suffer an internal failure	[HOW-5]		551
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		902
+        Apollo provides brake control too late before (< TBD sec before) limits are exceeded (limits for upcoming manoeuvre, controllability, stability, speed limit, traffic flow limit, planned test limit, etc.)	[UCA-6.16]	[H-2] [H-3] [H-4] [H-6] 	417
+            True statement from UCA context: The vehicle is passing through the point where gentle braking will suffice, such that the vehicle has not begun to brake and more severe braking or stability compromise will ensue	[TRUE-29]		557
+                Apollo incorrectly believes that there is no present need to brake	[BEL-34]		558
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		569
+                        Information received: is insufficient to accurately determine the correct time to brake	[FB-79]		570
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		572
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		910
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		574
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		912
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		573
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		911
+                            One or more sensors suffer an internal failure	[HOW-5]		571
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		909
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		564
+                        Algorithm flaw: Apollo processes data received too slowly, such that the data processed already reflects an earlier physical scenario that is now inappropriate	[FB-75]		565
+                            Apollo has insufficient processor resources to process the data	[HOW-100]		566
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		906
+                            Apollo processor resources are unavailable	[HOW-101]		567
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		907
+                            Apollo software performance degrades over time due to a programming fault	[HOW-102]		568
+                                Where Apollo is required to access historic data, it must be ensured that e.g. the data is compatmentalized to avoid linearly growing seek times	[REQ-74]		908
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		575
+                        Algorithm flaw: The control algorithm does not account for vehicle stability prior to arriving at the apex, treating the curve as a discrete point rather than a contiguous path	[FB-80]		576
+                    Type 2 scenario: Apollo does not receive feedback / information when needed	[CS-16]		559
+                        Information received: Apollo receives feedback about an obstacle too late	[FB-78]		560
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		561
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		913
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		562
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		914
+                            One or more sensors suffer an internal failure	[HOW-5]		563
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		915
+            True statement from UCA context: The vehicle is approaching the point where the vehicle would normally brake, but adverse weather conditions (road traction) require that the braking should begin earlier than normal	[TRUE-30]		577
+                Apollo incorrectly believes that the point at which braking is required is as normal	[BEL-35]		578
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		579
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		580
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		581
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		916
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		585
+                        Algorithm flaw: Control model does not account for adverse weather conditions of the prevailing type when determining the deceleration limit when braking for the upcoming manoeuvre	[FB-81]		586
+                            [How is not required here]	[HOW-10001]		917
+                                Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-36]		918
+        Apollo removes brake control too early when relative velocity and distance to an obstacle mean that a collision will occur	[UCA-6.17]	[H-2] [H-3] [H-4] 	418
+            True statement from UCA context: The vehicle is approaching an obstacle, and slows down to some extent but then removes the braking control	[TRUE-31]		587
+                Apollo incorrectly believes that the relative distance is higher than in reality	[BEL-2]		602
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		603
+                        Information received: The feedback received is insufficient to accurately determine the relative distance	[FB-3]		604
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		605
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		924
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		606
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		925
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		607
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		926
+                            One or more sensors suffer an internal failure	[HOW-5]		608
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		927
+                Apollo incorrectly believes that it has achieved the planned vehicle velocity	[BEL-36]		588
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		589
+                        Information received: The feedback received is insufficient to accurately determine the determine the vehicle velocity	[FB-10]		590
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		591
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		919
+                            Vehicle speed sensors suffer an internal failure	[HOW-6]		593
+                                The vehicle speed sensors are critical and must be redundant and designed and test for operational reliability	[REQ-41]		920
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		592
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		921
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		594
+                        Information received: Apollo receives feedback that it is not decelerating as expected	[FB-82]		595
+                            Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict	[HOW-1]		598
+                                Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies	[REQ-33]		923
+                            Assumed deceleration is used to calculate braking duration rather than monitoring the actual vehicle velocity	[HOW-104]		597
+                                When braking Apollo must heuristically adapt the level of braking if the deceleration is too slow, or too rapid	[REQ-71]		922
+                Apollo believes that the target velocity is different to that required in reality	[BEL-37]		599
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		600
+                        Apollo miscalculates due to a programming fault	[FB-83]		601
+            True statement from UCA context: The original target velocity was achieved but a changing obstacle path now requires further action	[TRUE-32]		609
+                Apollo incorrectly believes that original reduction in velocity was sufficient	[BEL-38]		610
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		616
+                        Hardware flaw: Insufficient resources delay the cycle between receipt of the new sensor data and a command being sent	[FB-85]		617
+                            [How is not required here]	[HOW-10001]		956
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		957
+                        Algorithm flaw: Excessive weight is placed on previous calculations leading to a trajectory that does not decelerate rapidly enough	[FB-86]		618
+                            [How is not required here]	[HOW-10001]		958
+                                Apollo must discard previous trajectory calculations when the situation suddenly changes - this impacts 'stitching' algorithms	[REQ-79]		959
+                    Type 2 scenario: Apollo does not receive feedback / information when needed	[CS-16]		611
+                        Information received: The feedback is insufficiently prompt to allow the process model to be updated in time to take action	[FB-84]		612
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		614
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		928
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		615
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		929
+                            One or more sensors suffer an internal failure	[HOW-5]		613
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		930
+                Apollo incorrectly believes that the obstacle will clear the vehicle's path	[BEL-39]		619
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		620
+                        Information received: The feedback received is insufficient to accurately predict obstacle’s path	[FB-87]		621
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		623
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		931
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		624
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		932
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		625
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		933
+                            One or more sensors suffer an internal failure	[HOW-5]		626
+                                All sensors must be designed and tested for operational reliability	[REQ-35]		935
+                            The vehicle was originally on trajectory to leave the lane but e.g. has swerved back suddenly	[HOW-105]		622
+                                Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system	[REQ-45]		955
+                                Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle	[REQ-47]		934
+        Apollo stops applying brake control when in autonomous mode before (> TBD seconds before) vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)	[UCA-6.19]	[H-1] [H-2] [H-3] [H-4] [H-6] 	547
+            True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but decleration has ceased	[TRUE-33]		627
+                Apollo incorrectly believes that it has achieved a vehicle target velocity consistent with the planned manoeuvre	[BEL-40]		628
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		629
+                        Information received: The feedback received is insufficient to accurately determine the determine the vehicle velocity	[FB-10]		630
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		633
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		936
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		634
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		937
+                            Vehicle speed sensors suffer an internal failure	[HOW-6]		635
+                                The vehicle speed sensors are critical and must be redundant and designed and test for operational reliability	[REQ-41]		938
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		636
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		939
+                Apollo incorrectly believes that it has entered the corner, apex, or exited the corner	[BEL-41]		637
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		638
+                        The feedback received is insufficient to accurately determine the current position relative to the manoeuvre being executed	[FB-88]		639
+                            Externally mounted sensors have their alignment, focus, or position compromised, or are blocked by environmental or load-shed debris	[HOW-2]		640
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		940
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		641
+                                All command and data pathways must be redundant and self-healing where practicable	[REQ-11]		941
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		642
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		942
+                            One or more sensors suffer an internal failure	[HOW-5]		643
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		943
+            True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but decleration has ceased	[TRUE-33]		644
+                Apollo incorrectly believes that the safe speed for the manoeuvre is higher than in reality	[BEL-42]		645
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		646
+                        The feedback is insufficient to determine the required manoeuvre velocity	[FB-89]		647
+                            The change in perspective as the vehicle begins to enter the bend leads to an underestimation of the remaining curvature, due to limited field-of-view	[HOW-106]		648
+                                Apollo must adopt a worst-case  view when deducing road curvature	[REQ-76]		944
+            True statement from UCA context: The vehicle has completed ‘standard’ deceleration for the manoeuvre, but further deceleration is required because of adverse weather / road conditions	[TRUE-34]		649
+                Apollo incorrectly believes that the safe manoeuvre speed is higher than in reality because it has failed to identify adverse weather / road conditions	[BEL-28]		650
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		651
+                        Information received: The feedback received is insufficient to accurately determine the current weather / environmental conditions	[FB-5]		652
+                            Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances	[HOW-7]		653
+                                Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves	[REQ-37]		945
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		657
+                        Weather conditions that lead to a slight slipping of the vehicle, and therefore reduced g-force, are interpreted as lower radius of curvature or a higher maximum speed	[FB-90]		658
+                Apollo incorrectly believes that the vehicle is in a unstable state when it is not	[BEL-29]		659
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		660
+                        Undulations in the road, coupled with fluctuations in the road surface texture and deviations in the road relative to a circular arc are misinterpreted as vehicle slippage	[FB-91]		661
+        Apollo continues applying brake control too long (> TBD seconds) after vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)	[UCA-6.20]	[H-3] [H-4] 	548
+            True statement from UCA context: The vehicle has approached a e.g. a corner, slowed down, but is now slowing down to a speed that is below the expectations of other driver and (for example) the UK highway code for 'progress'	[TRUE-35]		662
+                Apollo incorrectly believes that the vehicle is travelling faster than in reality	[BEL-43]		663
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		664
+                        Information received: The feedback received is insufficient to accurately determine the determine the vehicle velocity	[FB-10]		665
+                            A data error on the sensor(s) data bus prevents up-to-date data from being received	[HOW-3]		666
+                                Sensors must be mounted and shaped so that they cannot collide with the environment or snag debris, and be self cleaning where applicable	[REQ-34]		946
+                            The controller receives stale data because the feedback transmission medium is overloaded by this or other sensors	[HOW-4]		667
+                                All controllers and sensors must use send rates such that the total usage of the bus or network, for all clients, does not exceed the media bandwidth 	[REQ-15]		947
+                            Vehicle speed sensors suffer an internal failure	[HOW-6]		668
+                                The vehicle speed sensors are critical and must be redundant and designed and test for operational reliability	[REQ-41]		948
+                            GPS / GNSS / IMU sensors are offline, reporting stale data, or data transmission is delayed	[HOW-9]		669
+                                The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup	[REQ-38]		949
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		670
+                        Algorithm flaw: The algorithm is excessively cautious, making a lack of progress; the risk of rear end collision / overtaking collisions is increased	[FB-92]		671
+        Apollo stops applying brake control too soon at end of test before driver has resumed control (e.g. manual braking)	[UCA-6.21]	[H-1] [H-2] [H-3] [H-4] 	549
+            True statement from UCA context: The vehicle comes to a halt at some predesignated position, but the brakes have not been engaged prior to the human driver resuming control	[TRUE-36]		673
+                Apollo mistakenly believes that the human driver has taken control	[BEL-44]		678
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		679
+                        Algorithm flaw: Apollo automatically drops to human control (automatic off) without the human's knowledge or instruction	[FB-93]		680
+                            [How is not required here]	[HOW-10001]		960
+                                Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey	[REQ-48]		961
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		681
+                        Apollo does not account for the end of the test period and apply brakes (either a standard continuous brake command, or a transition to ‘Park’ mode)	[FB-94]		682
+                            [How is not required here]	[HOW-10001]		962
+                                Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey	[REQ-48]		963
+                Apollo mistakenly believes it is supplying sufficient brake	[BEL-45]		683
+                    Type 2 Scenario: Apollo receives incorrect feedback / information:	[CS-2]		684
+                        Information such as the local angle of the road (relative to the vertical action of gravity) is either not fed back to the process model, or it is not taken into account	[FB-95]		685
+                    Type 1 Scenario: Controller receives correct feedback but interprets it incorrectly or ignores it:	[CS-1]		686
+                        Information received: Feedback is sufficient to determine that the vehicle is on a hill	[FB-96]		687
+                            Apollo does not account for the enhanced braking requirement	[HOW-107]		688
+                                Apollo must account for gradient when applying the brakes	[REQ-77]		950
+                            The specific local gradient is rejected in favour of the map gradient	[HOW-108]		690
+                                Apollo must use the local gradient, rather than the map gradient, when applying the brakes when stationary	[REQ-78]		951
+        CA-6.22: Apollo stops applying brake control when collision occurs and driver has not resumed control (e.g. manual braking)	[UCA-6.22]	[H-1] [H-2] [H-3] [H-4] [H-5] 	672
+            True statement from UCA context: The vehicle has been brought to rest, but the vehicle drops out of automatic mode following a collision - leaving the vehicle free to move on e.g. a hill, or if further collisions take place	[TRUE-37]		677
+                Apollo mistakenly believes that the human driver has taken control	[BEL-46]		691
+                    Type 1 scenario: Inadequate control algorithm / hardware	[CS-14]		692
+                        Algorithm flaw: The control state transitions to human control mode	[FB-97]		693
+                            Following a collision and being brought to rest, automatic mode is simply ended without 'Park' being engaged	[HOW-109]		694
+                                Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey	[REQ-48]		952
+                            The collision and associated trajectory change are misinterpreted as a human override, leading to drop out of automatic mode	[HOW-110]		695
+                                Apollo must bring the vehicle to rest and apply the parking brake after a collision	[REQ-52]		953
+                            The algorithm attempts to slow down to avoid a collision, but the algorithm does not recognise a post collision scenario, and therefore simply carries on going	[HOW-111]		696
+                                Apollo's collision sensors must still be capable of reporting a collision even when extensive damage to the vehicle has taken place	[REQ-50]		964
+                                Apollo must be capable of detecting less severe collisions that do not immediately threaten life but require immediate attention, such as a broken windscreen, loose exhaust, etc	[REQ-51]		965
+                                Apollo must bring the vehicle to rest and apply the parking brake after a collision	[REQ-52]		954

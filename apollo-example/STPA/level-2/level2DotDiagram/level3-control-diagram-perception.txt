@@ -1,0 +1,63 @@
+digraph G {
+
+node [shape=box, width=4, fontname=arial, fontsize=24]
+graph [splines=ortho, ranksep=1.5, nodesep=0.8]
+edge [fontname=arial, fontsize = 14, style="setlinewidth(1)", lp=10, overlap=false]
+
+Planning
+Localization
+
+{rank=same
+	Planning
+	Prediction
+}
+
+Prediction[width=4]
+Localization[width=4]
+Planning[width=6]
+
+# Arrows from rank 3
+
+subgraph cluster_1 {
+	node [shape=box, width=4, fontname=arial, fontsize=16]
+	TLS[label="Traffic Light\nsubmodule", fontsize=16]
+	FusionM[label="Fusion\nsubmodule", width=8, fontsize=16]
+	LidarM[label="Lidar\nsubmodule", fontsize=16]
+	RadarM[label="Radar\nsubmodule", fontsize=16]
+	label="Perception"
+	colour="black"
+	{rank=same 
+		TLS 
+		LidarM}
+}
+
+# Rank 4
+
+RadarM -> Localization[dir=back, xlabel="position \rmotion \rorientation "]
+
+FusionM -> LidarM[dir=back, xlabel="lidar tracked objects"]
+FusionM -> RadarM[dir=back, taillabel="\lradar tracked objects\l type\l lateral velocity\l longitudinal velocity\l distance \l status\l"]
+Prediction -> FusionM[dir=back, xlabel="tracked objects:\l position \l velocity \l orientation\l type\l", minlen=2]
+Planning -> TLS[dir=back, taillabel="\l\lstop line postion\ltraffic light state"]
+
+# Rank 5
+subgraph cluster_0 {
+	node [shape=box, width=1, fontname=arial, fontsize=16]
+	GPS[width=2, label="GPS/GNSS"]
+	Camera1[label="Short focal\nlength Camera"] 
+	Camera2[label="Long focal\n length Camera"]
+	LidarSensor[label="Lidar", width=4]
+	RadarSensor[label="Radar"]
+	label="External Sensors"
+	color=black
+}
+
+Localization->GPS[dir=back, taillabel="\linertial data\lgnss position\lgnss error\lgnss orientation"]
+Localization->LidarSensor[dir=back, xlabel="point cloud"]
+RadarM->RadarSensor[dir=back, xlabel="radar observations"]
+LidarM->LidarSensor[dir=back, xlabel="point cloud"]
+TLS->Camera1[dir=back, xlabel="images"]
+TLS->Camera2[dir=back, xlabel="images"]
+
+
+}

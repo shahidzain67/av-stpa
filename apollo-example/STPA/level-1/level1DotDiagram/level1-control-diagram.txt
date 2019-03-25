@@ -27,7 +27,8 @@ Apollo->DataSpeed[taillabel=" \lBrake\lThrottle\lSteer\lShift\lParking brake\lHe
 Apollo->DataSpeed[dir=back, headlabel="\lVehicle fault status\lSteering state\lPropulsion state\lBraking state\lWatchdog fault flag\l "]
 "Safety Monitor"->Apollo[dir=back, headlabel="Autonomous mode (on/off)\lMap/Routing Confirmation\lApollo software state\lDreamView info (perception,\l prediction, planning, routing,\l chassis, decision items)\l "]
 
-DataSpeed->Vehicle
+DataSpeed->Vehicle[dir=back]
+DataSpeed->Vehicle[taillabel=" \lBrake\lThrottle\lSteer\lShift\lParking brake\lHeadlights\lHorn\lTurn signal\l"]
 Apollo->"Autonomy Sensors"[dir=back, headlabel="\lTraffic lights\lTraffic signs\lVehicle location\lObjects\lRoads\l "]
 
 "Safety Driver"->Vehicle[dir=back]

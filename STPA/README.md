@@ -13,4 +13,3 @@ The [STPA Handbook](http://psas.scripts.mit.edu/home/materials/) explains the pr
   - Unsafe control actions are control actions that are either not provided when they should be, provided when they shouldn't, provided too early / too late or applied too long / too short. Given certain **contexts**, these occurrences can lead to losses.
 4. Identify loss **scenarios**
   - Analyse the scenarios in which an unsafe control action can happen and lead to a loss.
-  

@@ -68,7 +68,7 @@
   <tr>
     <td>Steering</td>
     <td class="Not Providing">
-      Apollo does not provide steer control when in autonomous mode and vehicle is required to alter trajectory
+      Apollo does not provide steer control when in autonomous mode and vehicle path is not straight
     </td>
     <td class="Providing">
       Apollo provides steer control when the vehicle required to maintain current trajectory<br><br>
@@ -118,10 +118,10 @@
   <tr>
     <td>Shift to Drive</td>
     <td class="Not Providing">
-      Apollo does not provide shift to drive command when in autonomous mode, the vehicle is not already in drive and the vehicle is required to move forwards
+      Apollo does not provide shift to drive command when in autonomous mode, the vehicle is not already in drive and the path is clear
     </td>
     <td class="Providing">    
-      Apollo provides shift to drive when the vehicle is not required to move forwards<br><br>
+      Apollo provides shift to drive when the path is not clear and the brakes are not engaged<br><br>
       Apollo provides shift to drive when autonomous driving is not active
     </td>
     <td class="Too Early / Too Late / Out of Order">
@@ -138,7 +138,7 @@
       Apollo does not provide shift to neutral command when in autonomous mode and required by a throttle malfunction
     </td>
     <td class="Providing">    
-      Apollo provides shift to neutral command when the vehicle is moving<br><br>
+      Apollo provides shift to neutral command when the vehicle is moving and there is no throttle malfunction<br><br>
       Apollo provides shift to neutral command when autonomous driving is not active
     </td>
     <td class="Too Early / Too Late / Out of Order">
@@ -189,7 +189,7 @@
       Apollo does not provide parking brake on command when in autonomous mode, the vehicle is parked and the parking brake is off
     </td>
     <td class="Providing">
-      Apollo provides parking brake on command while vehicle is moving, or required to move<br><br>
+      Apollo provides parking brake on command while vehicle is moving or the path is clear<br><br>
       Apollo provides parking brake on command when autonomous mode is not active
     </td>
     <td class="Too Early / Too Late / Out of Order">

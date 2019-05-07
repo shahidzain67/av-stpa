@@ -1,4 +1,4 @@
-# STPA Requirements
+# Level 2 Requirements
 
 **REQUIREMENT REQ-1: Physical brake actuators must be designed must be designed and tested to be operationally reliable**
 
@@ -235,4 +235,3 @@
 
 
 **REQUIREMENT REQ-79: Apollo must discard previous trajectory calculations when the situation suddenly changes - this impacts 'stitching' algorithms**
-

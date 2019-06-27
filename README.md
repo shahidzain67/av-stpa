@@ -5,6 +5,8 @@ template: index_custom
 
 # STPA for Autonomous Vehicles
 
+<div id="banner-start"></div>
+
 The aim of this project is to develop a base set of safety requirements which will be widely applicable to autonomous vehicles.
 
 The requirements are being derived using STPA (System-Theoretic Process Analysis), a systems approach to safety developed at MIT. The analysis is being done on an autonomous car which uses Apollo 2.0, an Open Source Autonomous Vehicle project, however the results are easily transferable to other autonomous vehicles.
@@ -16,7 +18,13 @@ This project is part of [Trustable](https://trustable.gitlab.io/).
 **All work here is Work In Progress, and is published on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.**
 
+<div id="banner-end"></div>
+
+<div id="banner-img-start"></div>
 <img src="./images/level-2-control-diagram.png" alt="Level 2 Control Diagram" width="80%"/>
+<div id="banner-img-end"></div>
+
+<div id="index-content-start"></div>
 
 ## A Systems Approach to Safety
 
@@ -33,3 +41,4 @@ This repo contains a Work In Progress (WIP) STPA for an autonomous vehicle conta
 ## Apollo
 
 [Apollo](http://apollo.auto/) is an Open Source Autonomous Vehicle project ([source code repository](https://github.com/ApolloAuto/apollo)), which provides a software platform for its partners to develop their own autonomous driving systems. It is made available by Baidu under the Apache 2.0 License.
+<div id="index-content-end"></div>

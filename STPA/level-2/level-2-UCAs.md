@@ -2,7 +2,7 @@
 
 ## Apollo
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Control Action</th>
     <th>Not Providing</th>

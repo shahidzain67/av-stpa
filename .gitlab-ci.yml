@@ -1,111 +1,35 @@
-image: zenhaskell/analysis:lts-12.9
-
 variables:
-  TARGET_BRANCH: master
-  CHANGE_VALIDATIONS_PATH: "change_validations/"
-  GITECT_HOST: https://gitect2.codethink.co.uk
-  GITECT_EVIDENCE_ENDPOINT: "${GITECT_HOST}/api/v1/gitlab.com/${CI_PROJECT_PATH}/~/${CI_COMMIT_REF_NAME}/${CI_COMMIT_SHA}/evidence"
-  GITECT_CHANGE_VALID_EVIDENCE: "{\"elements\":
-                                  [{\"schema-version\": \"1\",
-                                  \"feature\": \"${CI_COMMIT_REF_NAME}\",
-                                  \"id\": \"!!CHANGE_VALIDATION_ID!!\",
-                                  \"validation-results-list\": !!VALIDATION_RESULTS!!,
-                                  \"test-id-list\": !!TESTS_IDS!!,
-                                  \"change-validation-type\": \"!!CHANGE_VALIDATION_TYPE!!\",
-                                  \"change-validator-id\": \"!!CHANGE_VALIDATOR_ID!!\",
-                                  \"environment-id\": \"!!ENVRT_ID!!\",
-                                  \"result\": !!GLOBAL_RESULT!!,
-                                  \"date-time\": \"!!DATE_TIME!!\",
-                                  \"comment\": \"!!COMMENT!!\"}]}"
-  GITECT_ENVRT_CONSTR_EVIDENCE: "{\"elements\":
-                                  [{\"schema-version\": \"1\",
-                                  \"feature\": \"${CI_COMMIT_REF_NAME}\",
-                                  \"id\": \"!!ENVRT_ID!!\",
-                                  \"orchestrator-id\": \"!!ORCHESTRATOR_ID!!\",
-                                  \"environment-type\": \"!!ENVRT_TYPE!!\",
-                                  \"date-time\": \"!!DATE_TIME!!\",
-                                  \"comment\": \"!!COMMENT!!\"}]}"
+  BASE_IMAGE: ubuntu:18.04
 
 stages:
-  - validate
-  - policy
+  - pages
+  - test-pages
 
-lint_markdown:
-  stage: validate
+.before-website-build: &before_website_build
+  - apt update && apt install -yq python-pip
+  - pip install -r requirements.txt
+
+pages:
+  stage: pages
+  image: $BASE_IMAGE
+  before_script: *before_website_build
   script:
-  - export MD_LINT_ENVRT_CONSTR_ID="${CI_PIPELINE_ID}_lint_markdown"
-  # gitect: Generate environment construction evidence
-  - |
-    (
-      json_data="$(echo "${GITECT_ENVRT_CONSTR_EVIDENCE}" \
-          | sed "s/!!ENVRT_ID!!/${MD_LINT_ENVRT_CONSTR_ID}/
-                 s/!!ORCHESTRATOR_ID!!/gitlab-ci:${CI_RUNNER_VERSION}/
-                 s/!!ENVRT_TYPE!!/docker:/
-                 s/!!DATE_TIME!!/$(date -Iseconds)/
-                 s/!!COMMENT!!/Linting environment for Markdown documentation/")"
-      curl -k -H "Content-Type: application/json" -H "X-Gitect-Token: ${GITECT_HOST_TOKEN}" -d \
-          "$json_data" ${GITECT_EVIDENCE_ENDPOINT}/environment-construction
-    )
-  - gem install mdl
-  - output=$(mdl -s <(echo "rule 'MD009', :br_spaces => 4") .)
-  # gitect Generate change validation evidence including linting results
-  - |
-    (
-      comment="$output"
-      change_validation_id=${CI_PROJECT_PATH_SLUG}_lint_markdown_$(date +%s%N)
-      mkdir -p "${CHANGE_VALIDATIONS_PATH}"
-      echo "export LINT_MARKDOWN_CHANGE_VALIDATION_ID=$change_validation_id" >> "${CHANGE_VALIDATIONS_PATH}/lint_markdown.env"
-      global_result=false
-      if [[ -z "$output" ]]; then
-        global_result=true
-        comment='No linting error detected'
-      fi
-
-      # escape newlines
-      comment=$(echo ${comment} | tr '\n' '; ')
-
-      json_data="$(echo "${GITECT_CHANGE_VALID_EVIDENCE}" \
-          | sed "s/!!CHANGE_VALIDATION_ID!!/$change_validation_id/
-                 s%!!VALIDATION_RESULTS!!%[]%
-                 s%!!TESTS_IDS!!%[]%
-                 s/!!CHANGE_VALIDATION_TYPE!!/Markdown documentation linting/
-                 s/!!CHANGE_VALIDATOR_ID!!/markdownlint:$(gem -v mdl)/
-                 s/!!ENVRT_ID!!/${MD_LINT_ENVRT_CONSTR_ID}/
-                 s/!!GLOBAL_RESULT!!/${global_result}/
-                 s/!!DATE_TIME!!/$(date -Iseconds)/
-                 s/!!COMMENT!!/$comment/")"
-      curl -k -H "Content-Type: application/json" -H "X-Gitect-Token: ${GITECT_HOST_TOKEN}" -d \
-          "$json_data" ${GITECT_EVIDENCE_ENDPOINT}/change-validation
-    )
-
+  - make --directory ./website publish
+  - mv website/output public
   artifacts:
     paths:
-      - "${CHANGE_VALIDATIONS_PATH}"
-  except:
-    - master
-    - tags
+    - public
+  only:
+  - master
 
-policy:
-  stage: policy
-  variables:
-    GIT_STRATEGY: fetch
-
-  except:
-    - master
-    - tags
+test-pages:
+  stage: test-pages
+  image: $BASE_IMAGE
+  before_script: *before_website_build
   script:
-    - |
-      (
-        # gitect: Check policy compliance
-        output=$(curl -k -H "Accept: application/json" -H "X-Gitect-Token: ${GITECT_HOST_TOKEN}" -G \
-          --data-urlencode "target-branch=${TARGET_BRANCH}" \
-          "${GITECT_HOST}/api/v1/gitlab.com/${CI_PROJECT_PATH}/~/${CI_COMMIT_REF_NAME}/${CI_COMMIT_SHA}/policy-compliance")
-
-        if [[ "$output" != *"true"* ]];then
-          echo "error: Policy compliance check failed!"
-          exit 1
-        fi
-      )
-    - git fetch origin refs/notes/*:refs/notes/*
-    - git notes --ref environment-construction show HEAD
-    - git notes --ref change-validation show HEAD
+  - make --directory ./website publish
+  artifacts:
+    paths:
+    - website/output/
+  except:
+  - master

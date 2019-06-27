@@ -1,3 +1,8 @@
+Title: STPA
+URL:
+save_as: stpa.html
+template: stpa
+
 # STPA Results
 
 The STPA analysis has been done over 3 levels so far. Level 1 is looking at safety from a high abstraction, and each level becomes more focussed on details.

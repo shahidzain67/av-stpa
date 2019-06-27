@@ -1,3 +1,8 @@
+Title: STPA for Autonomous Vehicles
+URL:
+save_as: index.html
+template: index_custom
+
 # STPA for Autonomous Vehicles
 
 The aim of this project is to develop a base set of safety requirements which will be widely applicable to autonomous vehicles.

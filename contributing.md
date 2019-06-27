@@ -1,6 +1,7 @@
 Title: Contributing
 URL:
 save_as: contributing.html
+template: stpa
 
 # Contributing
 

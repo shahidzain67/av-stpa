@@ -1,3 +1,5 @@
+Title: Emergency Mode
+
 # 'Emergency Mode', Emergency Stop ('estop_'), Emergency Overide
 
 These three functions allow a different kind of emergency functionality to take place
@@ -98,6 +100,3 @@ Whilst it is too early to conclude the consequences of the existance of these th
 - The E-Stop, E-Mode, E-Override are activated by different conditions
 - The E-Stop, E-Mode, and E-Override have different effects on the system
 - The E-Stop, E-Mode, and E-Override operate _independently in software_ and interract through their control consequences for the vehicle.
-
-
-

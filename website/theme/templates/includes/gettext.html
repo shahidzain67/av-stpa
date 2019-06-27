@@ -1,0 +1,7 @@
+{% if not gettext %}
+    {% macro gettext(text) %}
+        {{ text }}
+    {% endmacro %}
+{% else %}
+    {% set gettext=gettext %}
+{% endif %}

@@ -1,0 +1,27 @@
+<style>
+	#banner{
+	    background-image:url("{{ SITEURL}}/{{ BANNER }}");
+	}
+</style>
+
+<div id="banner">
+	<div class="container{% if BOOTSTRAP_FLUID %}-fluid{% endif %}">
+    <div class="row">
+      <div class="col-sm-6">
+  			<h1>{{ SITENAME }}</h1>
+  			{% if BANNER_SUBTITLE %}
+  				<p class="intro">{{ BANNER_SUBTITLE }}</p>
+  			{% endif %}
+
+          <p class="intro">The aim of this project is to develop a base set of safety requirements which will be widely applicable to autonomous vehicles.</p>
+          <p class="intro">The requirements are being derived using STPA (System-Theoretic Process Analysis), a systems approach to safety developed at MIT. The analysis is being done on an autonomous car which uses Apollo 2.0, an Open Source Autonomous Vehicle project, however the results are easily transferable to other autonomous vehicles.</p>
+          <p class="intro">All of the analysis is fully open, provided under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). We are also open for contributors to the project. We fully believe that the best way to achieve safety is by open collaboration between as many parties as possible. To contribute, please see our contributing page.</p>
+          <p class="intro">This project is part of [Trustable](https://trustable.gitlab.io/).</p>
+
+      </div>
+      <div class="col-sm-6">
+        <img src="{{ BANNER_IMAGE }}" alt="Level 2 Control Diagram" width="100%" style="vertical-align: middle;" />
+      </div>
+    </div>
+	</div>
+</div>

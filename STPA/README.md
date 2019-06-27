@@ -1,7 +1,24 @@
-# WIP : STPA
+# STPA Results
 
-**All work here is Work In Progress, and is published on an "AS IS" BASIS,
-WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.**
+The STPA analysis has been done over 3 levels so far. Level 1 is looking at safety from a high abstraction, and each level becomes more focussed on details.
+
+## Level 1
+
+Level 1 considers building a team to design an autonomous vehicle from a safety point of view.
+
+## Level 2
+
+Level 2 analyses the vehicle safety with Apollo as a "black box", considering its interactions with the vehicle.
+
+![Level 2 Control Diagram](../images/level-2-control-diagram.png)
+
+## Level 3
+
+Level 3 zooms into the Apollo software, and analysis the interactions between software modules within.
+
+![Level 2 Control Diagram](../images/level-3-control-diagram.png)
+
+## STPA Method
 
 The [STPA Handbook](http://psas.scripts.mit.edu/home/materials/) explains the process of how to do STPA. It should not be essential to know the process thoroughly to follow an analysis. For those unfamiliar with the process, there are four steps (key terms are highlighted in **bold**):
 

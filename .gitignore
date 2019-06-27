@@ -1,3 +1,4 @@
-# Document build outputs
-Documentation/control-diagram.png
-apollo-example/apollo-control-diagram.png
+# Website build outputs
+/website/output
+/website/level-2-concat.md
+*.pyc

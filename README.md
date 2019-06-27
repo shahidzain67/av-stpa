@@ -25,7 +25,7 @@ This repo contains a Work In Progress (WIP) STPA for an autonomous vehicle conta
 
 [Apollo](http://apollo.auto/) is an Open Source Autonomous Vehicle project ([repo](https://github.com/ApolloAuto/apollo)), which provides a software platform for its partners to develop their own autonomous driving systems. It is made available by Baidu under the Apache 2.0 License. The purpose of this project is to analyse the safety of a specific implementation of Apollo v2.0, as is shown below.
 
-![Level 2 Control Diagram](./STPA/level-2/raw-files/level-2-control-diagram.png)
+<img src="./images/level-2-control-diagram.png" alt="Level 2 Control Diagram" width="80%"/>
 
 ## The Repo
 

@@ -15,13 +15,13 @@ Level 1 considers building a team to design an autonomous vehicle from a safety 
 
 Level 2 analyses the vehicle safety with Apollo as a "black box", considering its interactions with the vehicle.
 
-![Level 2 Control Diagram](../images/level-2-control-diagram.png)
+![Level 2 Control Diagram](./images/level-2-control-diagram.png)
 
 ## Level 3
 
 Level 3 zooms into the Apollo software, and analysis the interactions between software modules within.
 
-![Level 2 Control Diagram](../images/level-3-control-diagram.png)
+![Level 2 Control Diagram](./images/level-3-control-diagram.png)
 
 ## STPA Method
 

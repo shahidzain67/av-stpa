@@ -16,9 +16,9 @@ Type 3 Scenario:
 
        - How this could occur given the true statement above:
 
-           - A mechanical fault causes the physical part of the brake actuator to sieze
+           - A mechanical fault causes the physical part of the brake actuator to seize
 
-               - **REQUIREMENT REQ-1: Physical brake actuators must be designed must be designed and tested to be operationally reliable**
+               - **REQUIREMENT REQ-1: Physical brake actuators must be designed and tested to be operationally reliable**
 
 
 Type 3 Scenario:
@@ -31,7 +31,7 @@ Type 3 Scenario:
 
            - Battery / alternator system failure
 
-               - **REQUIREMENT REQ-2: The battery / alternator power system must be designed and tested to be operationally**
+               - **REQUIREMENT REQ-2: The battery / alternator power system must be designed and tested to be operationally reliable**
 
            - Mechanical damage to the power supply route
 
@@ -72,15 +72,15 @@ Type 3 Scenario:
 
            - The brake actuator is locked out by an unterminated command
 
-               - **REQUIREMENT REQ-7: The brake commands should not be implemented on a select-exectute model**
+               - **REQUIREMENT REQ-7: The brake commands should not be implemented on a select-execute model**
 
            - The actuator processes a command from another system that should have been disregarded
 
-               - **REQUIREMENT REQ-8: All system commands must be mainted in a master I/O schedule that, where practicable, uses unique addressing for each component and command**
+               - **REQUIREMENT REQ-8: All system commands must be maintained in a master I/O schedule that, where practicable, uses unique addressing for each component and command**
 
            - The actuator is time-stamp priority aware, but incorrect time synchronisation renders this priority scheme ineffective
 
-               - **REQUIREMENT REQ-9: All vehicle systems must be time synchronised via an on-board clock master, rather than 'dialing out' to an off-vehicle source**
+               - **REQUIREMENT REQ-9: All vehicle systems must be time synchronised via an on-board clock master, rather than 'dialling out' to an off-vehicle source**
 
 
 Type 3 Scenario:
@@ -118,7 +118,7 @@ Type 3 Scenario:
 
            - A buffering mechanism, combined with a temporary route loss, causes a route to be flooded with stale commands
 
-               - **REQUIREMENT REQ-14: Buffered transmission must be accomplanied by a buffer purge when the route fails for longer > than TBD seconds**
+               - **REQUIREMENT REQ-14: Buffered transmission must be accompanied by a buffer purge when the route fails for longer > than TBD seconds**
 
            - The use of persistent send / send upon analogue change causes a rate of transmission that overloads the transmission medium
 
@@ -134,24 +134,24 @@ Type 3 Scenario:
 
 Type 4 Scenario:
 
-   -  Apollo sends the command which is executed by the actuator, but the contolled process does not respond correctly
+   -  Apollo sends the command which is executed by the actuator, but the controlled process does not respond correctly
 
        - Improper Process response: the wheels hydroplane so no braking is applied
 
        - How this could occur given the true statement above:
 
-           - The road is covered with standing water; the tyres loose contact with the ashphalt
+           - The road is covered with standing water; the tyres loose contact with the asphalt
 
                - **REQUIREMENT REQ-18: The autonomous system must be equipped with sensors and algorithms capable of detecting standing water, in order to slow down before entering**
 
-           - An oil / water mix is present after a heavy shower; the tyres loose contact with the ashphalt
+           - An oil / water mix is present after a heavy shower; the tyres loose contact with the asphalt
 
-               - **REQUIREMENT REQ-19: The autonomous system must be capable of detecting when there is or has been heavy rain, in order to accound for reduced traction**
+               - **REQUIREMENT REQ-19: The autonomous system must be capable of detecting when there is or has been heavy rain, in order to account for reduced traction**
 
 
 Type 4 Scenario:
 
-   -  Apollo sends the command which is executed by the actuator, but the contolled process does not respond correctly
+   -  Apollo sends the command which is executed by the actuator, but the controlled process does not respond correctly
 
        - Improper Process response: the controlled process does not respond due to an auxiliary systems failure
 
@@ -180,13 +180,11 @@ Type 3 Scenario:
 
                - **REQUIREMENT REQ-21: The human driver should be warned (acoustically or visually) when they are about to exceed the override threshold**
 
-
                - **REQUIREMENT REQ-22: The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated**
 
            - The human driver stands ready with their foot resting on the brake pedal, but is not aware that they pushed it at all
 
                - **REQUIREMENT REQ-21: The human driver should be warned (acoustically or visually) when they are about to exceed the override threshold**
-
 
                - **REQUIREMENT REQ-22: The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated**
 
@@ -196,11 +194,11 @@ Type 3 Scenario:
 
            - Short term, incorrect feedback from the vehicle triggers a brake channel override
 
-               - **REQUIREMENT REQ-22: The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated**
+               - **REQUIREMENT REQ-22: The human driver / monitor should be informed (acoustically or visually) when a channel override is activated or deactivated**               
 
-           - Incorrect parameters in a non braking system, cause other system feedback to be misinterpretted as a brake feedback - DataSpeed engages override
+           - Incorrect parameters in a non braking system, cause other system feedback to be misinterpreted as a brake feedback - DataSpeed engages override
 
-               - **REQUIREMENT REQ-8: All system commands must be mainted in a master I/O schedule that, where practicable, uses unique addressing for each component and command**
+               - **REQUIREMENT REQ-8: All system commands must be maintained in a master I/O schedule that, where practicable, uses unique addressing for each component and command**
 
 
 Belief:
@@ -278,7 +276,7 @@ Type 3 scenario:
 
            - A buffering mechanism causes a route to be flooded with stale commands that result in the brakes responding to a historical command
 
-               - **REQUIREMENT REQ-14: Buffered transmission must be accomplanied by a buffer purge when the route fails for longer > than TBD seconds**
+               - **REQUIREMENT REQ-14: Buffered transmission must be accompanied by a buffer purge when the route fails for longer > than TBD seconds**
 
 
 Type 3 scenario:
@@ -312,7 +310,7 @@ Type 3 scenario:
 
            - An incorrectly configured controller activates the brakes in error
 
-               - **REQUIREMENT REQ-8: All system commands must be mainted in a master I/O schedule that, where practicable, uses unique addressing for each component and command**
+               - **REQUIREMENT REQ-8: All system commands must be maintained in a master I/O schedule that, where practicable, uses unique addressing for each component and command**
 
            - The human driver activates the brakes in error
 
@@ -321,11 +319,11 @@ Type 3 scenario:
 
 #### CA-6.3: Apollo provides the braking command at the necessary level to ensure vehicle safety (later rendered unsafe by insufficient / excessive provision)
 
-**True statement from the CA context: A specific level of braking is required, but it is not applied by the acutuator**
+**True statement from the CA context: A specific level of braking is required, but it is not applied by the actuator**
 
 Type 4 Scenario:
 
-   -  Apollo sends the command which is executed by the actuator, but the contolled process does not respond correctly
+   -  Apollo sends the command which is executed by the actuator, but the controlled process does not respond correctly
 
        - Improper Process response: the controlled process does not respond due to an auxiliary systems failure
 
@@ -337,20 +335,20 @@ Type 4 Scenario:
 
        - How this could occur given the true statement above:
 
-           - The road is covered with standing water; the tyres loose contact with the ashphalt
+           - The road is covered with standing water; the tyres loose contact with the asphalt
 
                - **REQUIREMENT REQ-18: The autonomous system must be equipped with sensors and algorithms capable of detecting standing water, in order to slow down before entering**
 
-           - An oil / water mix is present after a heavy shower; the tyres loose contact with the ashphalt
+           - An oil / water mix is present after a heavy shower; the tyres loose contact with the asphalt
 
-               - **REQUIREMENT REQ-19: The autonomous system must be capable of detecting when there is or has been heavy rain, in order to accound for reduced traction**
+               - **REQUIREMENT REQ-19: The autonomous system must be capable of detecting when there is or has been heavy rain, in order to account for reduced traction**
 
 
 Type 3 scenario:
 
    -  Apollo sends the braking command correctly, but insufficient / excessive braking is applied by the actuator
 
-       - Improper execution: The actuator applies insufficicient / excessive braking due to incorrect configuration
+       - Improper execution: The actuator applies insufficient / excessive braking due to incorrect configuration
 
        - How this could occur given the true statement above:
 
@@ -390,7 +388,7 @@ Type 3 scenario:
 
 #### CA-6.4: Apollo provides the braking command at the correct time to ensure vehicle safety
 
-**True statement from the CA context: The braking command is issued prompty, but braking is applied too late**
+**True statement from the CA context: The braking command is issued promptly, but braking is applied too late**
 
 Type 3 scenario:
 
@@ -419,7 +417,7 @@ Type 3 scenario:
 
            - A buffering mechanism, combined with a temporary route loss, causes a route to be flooded with stale commands
 
-               - **REQUIREMENT REQ-14: Buffered transmission must be accomplanied by a buffer purge when the route fails for longer > than TBD seconds**
+               - **REQUIREMENT REQ-14: Buffered transmission must be accompanied by a buffer purge when the route fails for longer > than TBD seconds**
 
            - The use of persistent send / send upon analogue change causes a rate of transmission that overloads the transmission medium
 
@@ -516,7 +514,7 @@ Type 3 scenario:
 
        - How this could occur given the true statement above:
 
-           - A mechanical fault causes the physical part of the brake actuator to sieze
+           - A mechanical fault causes the physical part of the brake actuator to seize
 
                - **REQUIREMENT REQ-1: Physical brake actuators must be designed must be designed and tested to be operationally reliable**
 
@@ -606,7 +604,7 @@ Type 1 Scenario:
 
            - Apollo was presented with accurate data from at least one sensor, but it was discarded, distorted or overwritten due to an incorrect priority scheme or process model conflict
 
-               - **REQUIREMENT REQ-33: Priority schemes must be designed with voting systems, consistency checks  and redundancy, rather than crude averages or simple hierarchies**
+               - **REQUIREMENT REQ-33: Priority schemes must be designed with voting systems, consistency checks and redundancy, rather than crude averages or simple hierarchies**
 
 
 Belief:
@@ -671,7 +669,7 @@ Type 1 Scenario:
 
            - The sensors present images / points / data with sufficient clarity to deduce the conditions, but the the algorithm is not equipped to look for black ice, leaves, water, unforeseen spillages or environmental debris
 
-               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 Type 2 Scenario:
@@ -684,7 +682,7 @@ Type 2 Scenario:
 
            - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 #### UCA-6.2: Apollo does not provide brake control when in autonomous mode and vehicle speed exceeds limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.)[H-1] [H-2] [H-3] [H-4] [H-6]
@@ -795,7 +793,7 @@ Type 2 Scenario:
 
            - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 Type 1 Scenario:
@@ -808,7 +806,7 @@ Type 1 Scenario:
 
            - The sensors present images / points / data with sufficient clarity to deduce the conditions, but the the algorithm is not equipped to look for black ice, leaves, water, unforeseen spillages or environmental debris
 
-               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 #### UCA-6.3: Apollo does not provide brake control when in autonomous mode, the vehicle is stationary, and vehicle path is not clear[H-2] [H-3] [H-4]
@@ -896,7 +894,7 @@ Type 1 scenario:
 
            - Obstacles are incorrectly identified and so cannot be tracked effectively
 
-               - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
+               - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonably likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
 
 
 #### UCA-6.4: Apollo does not provide brake control when in autonomous mode and the vehicle has reached the final destination[H-7]
@@ -1174,7 +1172,7 @@ Type 1 Scenario:
                - **REQUIREMENT REQ-45: Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system**
 
 
-               - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
+               - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonably likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
 
 
 **True statement from UCA context: The vehicle is approaching an obstacle with a velocity and acceleration vector such that the vehicle will not be brought to rest in time to avert a collision *in adverse weather conditions***
@@ -1191,9 +1189,9 @@ Type 2 Scenario:
 
        - How this could occur given the true statement above:
 
-           - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
+           - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occurring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 Type 1 scenario:
@@ -1203,7 +1201,7 @@ Type 1 scenario:
        - Control model does not account for adverse weather conditions when determining the amount of braking to apply, and does not heuristically account for the deficit
 
 
-               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+           - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 #### UCA-6.8: Apollo provides brake command when autonomous driving is not active (off, standby, overridden, or e-stop)[H-3] [H-4] [H-5] [H-6]
@@ -1534,7 +1532,7 @@ Type 2 Scenario:
 
            - Temporary roadworks / path diversions are not marked on the HD map such that Apollo will not slow down for, or avoid, a static obstacle until it is physically detected
 
-               - **REQUIREMENT REQ-67: Apollo and its sensor must be capable of identying roadworks, police cordons, traffic accident scenes and following route markers such as cordons and lines of cones**
+               - **REQUIREMENT REQ-67: Apollo and its sensor must be capable of identifying roadworks, police cordons, traffic accident scenes and following route markers such as cordons and lines of cones**
 
 
 Type 1 scenario:
@@ -1548,7 +1546,7 @@ Type 1 scenario:
 
 Belief:
 
-*Apollo incorrectly identifies or ignores adverse weather / environmental conditions - and believes that it is applying an amout of deceleration lower than in reality*
+*Apollo incorrectly identifies or ignores adverse weather / environmental conditions - and believes that it is applying an amount of deceleration lower than in reality*
 
 Type 2 Scenario:
 
@@ -1558,9 +1556,9 @@ Type 2 Scenario:
 
        - How this could occur given the true statement above:
 
-           - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
+           - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occurring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical spills, and excessive mud, dust or rotting leaves**
 
 
 Type 1 Scenario:
@@ -1573,7 +1571,7 @@ Type 1 Scenario:
 
            - Control model does not account for adverse weather conditions when determining the amount of braking to apply, and does not heuristically account for the deficit
 
-               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical spills, and excessive mud, dust or rotting leaves**
 
 
 Belief:
@@ -1588,9 +1586,9 @@ Type 2 Scenario:
 
        - How this could occur given the true statement above:
 
-           - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
+           - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occurring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 Type 1 Scenario:
@@ -1633,7 +1631,7 @@ Type 1 Scenario:
 
    -  Controller receives correct feedback but interprets it incorrectly or ignores it:
 
-       - Information recevied: The feedback is sufficient to determine that the vehicle is stable
+       - Information received: The feedback is sufficient to determine that the vehicle is stable
 
        - How this could occur given the true statement above:
 
@@ -1669,8 +1667,7 @@ Type 1 scenario:
 
        - Algorithm flaw: Apollo is incorrectly calibrated such that applying brakes normally results in excessive braking
 
-
-               - **REQUIREMENT REQ-73: Apollo must be accurately calibrated for the braking system**
+           - **REQUIREMENT REQ-73: Apollo must be accurately calibrated for the braking system**
 
 
 Belief:
@@ -1724,7 +1721,7 @@ Type 1 scenario:
        - Bulk traffic tracking fails: The vehicle pulls up behind a broken down vehicle rather than evading it, exacerbating the dangerous traffic build up
 
 
-               - **REQUIREMENT REQ-72: Apollo must be capable of distinguishing broken down vehicles from queuing traffic**
+           - **REQUIREMENT REQ-72: Apollo must be capable of distinguishing broken down vehicles from queuing traffic**
 
 
 **True statement from UCA context: The vehicle is in a location where stopping is never appropriate when the path is open, such as a motorway / highway**
@@ -1860,7 +1857,7 @@ Type 1 scenario:
 
            - Apollo software performance degrades over time due to a programming fault
 
-               - **REQUIREMENT REQ-74: Where Apollo is required to access historic data, it must be ensured that e.g. the data is compatmentalized to avoid linearly growing seek times**
+               - **REQUIREMENT REQ-74: Where Apollo is required to access historic data, it must be ensured that e.g. the data is compartmentalized to avoid linearly growing seek times**
 
 
 Type 2 scenario:
@@ -1935,7 +1932,7 @@ Type 1 scenario:
 
            - Apollo software performance degrades over time due to a programming fault
 
-               - **REQUIREMENT REQ-74: Where Apollo is required to access historic data, it must be ensured that e.g. the data is compatmentalized to avoid linearly growing seek times**
+               - **REQUIREMENT REQ-74: Where Apollo is required to access historic data, it must be ensured that e.g. the data is compartmentalized to avoid linearly growing seek times**
 
 
 Type 1 scenario:
@@ -1982,7 +1979,7 @@ Type 2 Scenario:
 
            - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 Type 1 scenario:
@@ -1992,7 +1989,7 @@ Type 1 scenario:
        - Algorithm flaw: Control model does not account for adverse weather conditions of the prevailing type when determining the deceleration limit when braking for the upcoming manoeuvre
 
 
-               - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+           - **REQUIREMENT REQ-36: Apollo must be able to deduce and account for all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 #### UCA-6.17: Apollo removes brake control too early when relative velocity and distance to an obstacle mean that a collision will occur[H-2] [H-3] [H-4]
@@ -2094,13 +2091,13 @@ Type 1 scenario:
        - Hardware flaw: Insufficient resources delay the cycle between receipt of the new sensor data and a command being sent
 
 
-               - **REQUIREMENT REQ-45: Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system**
+           - **REQUIREMENT REQ-45: Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system**
 
 
        - Algorithm flaw: Excessive weight is placed on previous calculations leading to a trajectory that does not decelerate rapidly enough
 
 
-               - **REQUIREMENT REQ-79: Apollo must discard previous trajectory calculations when the situation suddenly changes - this impacts 'stitching' algorithms**
+           - **REQUIREMENT REQ-79: Apollo must discard previous trajectory calculations when the situation suddenly changes - this impacts 'stitching' algorithms**
 
 
 Type 2 scenario:
@@ -2157,12 +2154,12 @@ Type 2 Scenario:
                - **REQUIREMENT REQ-45: Apollo must have hardware capable of processing all data received in real time, with contingency to account for unexpected data bursts, and a real time operating system**
 
 
-               - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonablely likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
+               - **REQUIREMENT REQ-47: Apollo must be capable of tracking all reasonably likely obstacles, from lamp posts and trash cans to people, pets, and cattle**
 
 
 #### UCA-6.19: Apollo stops applying brake control when in autonomous mode before (> TBD seconds before) vehicle slows to acceptable speed (speed limit, traffic flow limit, manoeuvre limit, planned test limit, limits for controllability, stability, etc.)[H-1] [H-2] [H-3] [H-4] [H-6]
 
-**True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but decleration has ceased**
+**True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but deceleration has ceased**
 
 Belief:
 
@@ -2222,7 +2219,7 @@ Type 2 Scenario:
                - **REQUIREMENT REQ-38: The overall geolocation system must be robust enough to cope with momentary communication losses, and have some form of backup**
 
 
-**True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but decleration has ceased**
+**True statement from UCA context: The vehicle was decelerating at an appropriate rate in order to enter the manoeuvre, but deceleration has ceased**
 
 Belief:
 
@@ -2257,7 +2254,7 @@ Type 2 Scenario:
 
            - Sensors are not calibrated to distinguish snow, ice, 'black' ice, standing water, chemical spills, oils spills, slippery mud left by farm vehicles, soggy leaves or other commonly occuring substances
 
-               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonabely probable sustances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
+               - **REQUIREMENT REQ-37: Sensors must be calibrated to detect all reasonably probable substances that could affect vehicle traction such as black ice, standing water, oil / chemical  spills, and excessive mud, dust or rotting leaves**
 
 
 Type 1 scenario:
@@ -2332,8 +2329,7 @@ Type 1 scenario:
 
        - Algorithm flaw: Apollo automatically drops to human control (automatic off) without the human's knowledge or instruction
 
-
-               - **REQUIREMENT REQ-48: Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey**
+           - **REQUIREMENT REQ-48: Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey**
 
 
 Type 1 scenario:
@@ -2342,8 +2338,7 @@ Type 1 scenario:
 
        - Apollo does not account for the end of the test period and apply brakes (either a standard continuous brake command, or a transition to ‘Park’ mode)
 
-
-               - **REQUIREMENT REQ-48: Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey**
+           - **REQUIREMENT REQ-48: Apollo must be programmed to stop in a safe location and apply the parking brake at the end of the journey**
 
 
 Belief:

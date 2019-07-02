@@ -60,7 +60,7 @@ OUTPUT_PATH = 'output'
 THEME = './theme'
 BOOTSTRAP_THEME = 'flatly'
 
-TIMEZONE = 'Europe/Paris'
+TIMEZONE = 'Europe/London'
 DEFAULT_LANG = u'en'
 
 # Feed generation is usually not desired when developing
@@ -103,5 +103,3 @@ TOC = {
 HIDE_SIDEBAR = True
 SIDEBAR_ON_LEFT = True
 BOOTSTRAP_FLUID = False
-
-BANNER_IMAGE = "./images/level-2-control-diagram.png"

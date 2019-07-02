@@ -1,3 +1,5 @@
+Title: Checks on HMI actions
+
 # Checks on HMI actions
 
 Presented here are preliminary results of the investigation to determine if HMI actions can lead to unsafe conditions. The actions headers below have so far been investigated.
@@ -56,9 +58,3 @@ We conclude that the HMI can run any command that
 - c) can be returned by config_.modules(), which will depend on the the relevant .conf file, in this case HMI.conf
 
 **The HMI is capable of starting or stopping any Apollo module, because the conditions above are fulfilled. This could lead to unsafe driving conditions, and / or the software monitor invoking an emergency stop due to a FATAL error.**
-
-
-
-
-
-

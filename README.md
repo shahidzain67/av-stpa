@@ -1,13 +1,30 @@
+Title: STPA for Autonomous Vehicles
+URL:
+save_as: index.html
+template: index_custom
+
 # STPA for Autonomous Vehicles
+
+<div id="banner-start"></div>
+
+The aim of this project is to develop a base set of safety requirements which will be widely applicable to autonomous vehicles.
+
+The requirements are being derived using STPA (System-Theoretic Process Analysis), a systems approach to safety developed at MIT. The analysis is being done on an autonomous car which uses Apollo 2.0, an Open Source Autonomous Vehicle project, however the results are easily transferable to other autonomous vehicles.
+
+All of the analysis is fully open, provided under the [MIT License](https://en.wikipedia.org/wiki/MIT_License). We are also open for contributors to the project. We fully believe that the best way to achieve safety is by open collaboration between as many parties as possible. To contribute, please see our contributing page.
+
+This project is part of [Trustable](https://trustable.gitlab.io/).
 
 **All work here is Work In Progress, and is published on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.**
 
-## Project Overview
+<div id="banner-end"></div>
 
-The aim of this project is to develop a base set of safety requirements which will be widely applicable to many autonomous vehicles.
+<div id="banner-img-start"></div>
+<img src="./images/level-2-control-diagram.png" alt="Level 2 Control Diagram" width="80%"/>
+<div id="banner-img-end"></div>
 
-This project is part of [Trustable](https://gitlab.com/trustable/documents/wikis/home).
+<div id="index-content-start"></div>
 
 ## A Systems Approach to Safety
 
@@ -23,10 +40,5 @@ This repo contains a Work In Progress (WIP) STPA for an autonomous vehicle conta
 
 ## Apollo
 
-[Apollo](http://apollo.auto/) is an Open Source Autonomous Vehicle project ([repo](https://github.com/ApolloAuto/apollo)), which provides a software platform for its partners to develop their own autonomous driving systems. It is made available by Baidu under the Apache 2.0 License. The purpose of this project is to analyse the safety of a specific implementation of Apollo v2.0, as is shown below.
-
-![Level 2 Control Diagram](./STPA/level-2/raw-files/level-2-control-diagram.png)
-
-## The Repo
-
-This repo contains analysis of the Apollo 2.0 code which was conducted to answer specific questions which would help with the STPA analysis, as well as the STPA analysis itself.
+[Apollo](http://apollo.auto/) is an Open Source Autonomous Vehicle project ([source code repository](https://github.com/ApolloAuto/apollo)), which provides a software platform for its partners to develop their own autonomous driving systems. It is made available by Baidu under the Apache 2.0 License.
+<div id="index-content-end"></div>

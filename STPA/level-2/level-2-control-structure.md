@@ -1,3 +1,3 @@
 # Control Diagram
 
-![Level 2 Control Diagram](./raw-files/level-2-control-diagram.png)
+<img src="../../images/level-2-control-diagram.png" alt="Level 2 Control Diagram" width="80%"/>

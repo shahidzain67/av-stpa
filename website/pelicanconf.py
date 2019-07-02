@@ -11,7 +11,7 @@ class i18n(object):
 
     DOMAIN = 'messages'
     LOCALE_DIR = '{THEME}/translations'
-    LANGUAGES = ['de']
+    LANGUAGES = ['en']
     NEWSTYLE = True
 
     __name__ = 'i18n'

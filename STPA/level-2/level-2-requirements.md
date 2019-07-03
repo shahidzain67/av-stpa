@@ -1,6 +1,6 @@
 # Level 2 Requirements
 
-**REQUIREMENT REQ-1: Physical brake actuators must be designed must be designed and tested to be operationally reliable**
+**REQUIREMENT REQ-1: Physical brake actuators must be designed and tested to be operationally reliable**
 
 
 **REQUIREMENT REQ-2: The battery / alternator power system must be designed and tested to be operationally**

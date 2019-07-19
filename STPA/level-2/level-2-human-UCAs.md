@@ -26,7 +26,7 @@
 	   SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing (e.g. red light, stop sign, etc.) <br><br>
 	   SD does not provide manual brake cmd when emergency vehicle is present <br><br>
 	   SD does not provide manual brake cmd when vehicle speed exceeds planned test limits <br><br>
-	   SD does not provide required manual brake cmds when Autonomous SW is not controlling brakes. (overridden, disengaged, Estop) <br><br>
+	   SD does not provide required manual brake cmds when Autonomous SW is not controlling brakes (overridden, disengaged, Estop) <br><br>
 	   SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) 
     </td>
 	<td class="Providing">
@@ -407,7 +407,6 @@
 		SD does not reengage head lights (high beam) after turning them off for oncoming traffic when conditions require head lights <br><br>
 		SD does not engage head lights during low-light conditions resulting in impaired SD vision
     </td>
-	
     <td class="Providing">
     </td>
     <td class="Too Early / Too Late / Out of Order">

@@ -1,7 +1,5 @@
 # Level 2 Unsafe Control Actions (UCAs)
 
-## Apollo
-
 <table class="table table-bordered">
   <tr>
     <th>Control Action</th>
@@ -14,11 +12,22 @@
   <tr>
     <td>Brake Control<br><br>(brake control action with a significant level of braking: >x%)</td>
     <td class="Not Providing">
-      UCA-6.1: Apollo does not provide brake control when relative velocity and distance to an obstacle mean that a collision is imminent [H-2, H-3, H-4]<br><br>
-      UCA-6.2: Apollo does not provide brake control when in autonomous mode and vehicle speed exceeds limits (limits for controllability, stability, upcoming manoeuvre, speed limit, traffic flow limit, planned test limit, etc.) [H-1, H-2, H-3, H-4, H-6]<br><br>
-      UCA-6.3: Apollo does not provide brake control when in autonomous mode, the vehicle is stationary, and vehicle path is not clear [H-2, H-3, H-4]<br><br>
-      UCA-6.4: Apollo does not provide brake control when in autonomous mode and the vehicle has reached the final destination [H-7]<br><br>
-      UCA-6.6: Apollo does not provide brake control when in autonomous mode and collision occurs [H-1, H-2, H-3, H-4, H-5]
+       SD does not proide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
+	   SD does not provide manual brake cmd when forward or side collision is imminent <br><br>
+	   SD does not provide manual brake cmd when vehicle speed exceeds planned test limits  (2) <br><br>
+	   SD does not provide manual brake cmds when Autonomous SW is not controlling brakes (overriden, disengaged, Estop) <br><br>
+	   SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing down (e.g. red light, stop sign, etc.) <br><br>
+	   SD does not provide manual brake cmd when emergency vehicle is present <br><br>
+	   SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) <br><br>
+	   SD does not provide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
+	   SD does not provide manual brake command when Autonomous SW is not controlling brakes (overridden, disengaged, Estop) <br><br>
+	   SD does not provide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
+	   SD does not provide manual brake cmd when forward or side collision is imminent <br><br>
+	   SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing (e.g. red light, stop sign, etc.) <br><br>
+	   SD does not provide manual brake cmd when emergency vehicle is present <br><br>
+	   SD does not provide manual brake cmd when vehicle speed exceeds planned test limits <br><br>
+	   SD does not provide required manual brake cmds when Autonomous SW is not controlling brakes. (overridden, disengaged, Estop) <br><br>
+	   SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle)
     </td>
     <td class="Providing">
       UCA-6.7: Apollo provides brake command with insufficient amount of braking below the minimum amount needed to avert a forward collision [H-2, H-3, H-4]<br><br>

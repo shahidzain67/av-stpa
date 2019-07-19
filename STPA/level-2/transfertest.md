@@ -29,7 +29,6 @@
 	   SD does not provide required manual brake cmds when Autonomous SW is not controlling brakes. (overridden, disengaged, Estop) <br><br>
 	   SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) 
     </td>
-    
 	<td class="Providing">
 		SD provides insufficient manual braking to prevent collision when forward or side collision is imminent <br><br>
 		SD provides insufficient manual braking to override Autonomous SW when Autonomous SW is accelerating and deceleration is needed (vehicle speed exceeds limits, collision is imminent, or emergency vehicle is present) <br><br>
@@ -40,7 +39,6 @@
 		SD provides insufficient manual braking to prevent collision when forward or side collision is imminent <br><br>
 		SD provides insufficient manual braking to override Autonomous SW when Autonomous SW is accelerating and deceleration is needed (vehicle speed exceeds limits, collision is imminent, or emergency vehicle is present)
     </td>
-	
     <td class="Too Early / Too Late / Out of Order">
 		SD provides manual brake cmd too late at start of test causing override after Autonomous SW engages <br><br>
 		SD applies manual braking too late to avoid imminent collision <br><br>
@@ -48,7 +46,6 @@
 		SD applies manual braking too late to avoid imminent collision <br><br>
 		SD applies manual braking too early before vehicle is in safe area to decelerate
     </td>
-	
     <td class="Stopped Too Soon / Applied Too Long">
 		SD applies manual braking too long after collision is averted (potentially causing another collision) <br><br>
 		SD applies manual braking too long after overspeed is corrected (potentially causing another collision) <br><br>

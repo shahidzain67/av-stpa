@@ -12,22 +12,22 @@
   <tr>
     <td>brake command<br><br> </td>
     <td class="Not Providing">
-		SD does not proide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
-		SD does not provide manual brake cmd when forward or side collision is imminent <br><br>
-		SD does not provide manual brake cmd when vehicle speed exceeds planned test limits  (2) <br><br>
-		SD does not provide manual brake cmds when Autonomous SW is not controlling brakes (overriden, disengaged, Estop) <br><br>
-		SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing down (e.g. red light, stop sign, etc.) <br><br>
-		SD does not provide manual brake cmd when emergency vehicle is present <br><br>
-		SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) <br><br>
-		SD does not provide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
-		SD does not provide manual brake command when Autonomous SW is not controlling brakes (overridden, disengaged, Estop) <br><br>
-		SD does not provide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
-		SD does not provide manual brake cmd when forward or side collision is imminent <br><br>
-		SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing (e.g. red light, stop sign, etc.) <br><br>
-		SD does not provide manual brake cmd when emergency vehicle is present <br><br>
-		SD does not provide manual brake cmd when vehicle speed exceeds planned test limits <br><br>
-		SD does not provide required manual brake cmds when Autonomous SW is not controlling brakes. (overridden, disengaged, Estop) <br><br>
-		SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) 
+	   SD does not proide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
+	   SD does not provide manual brake cmd when forward or side collision is imminent <br><br>
+	   SD does not provide manual brake cmd when vehicle speed exceeds planned test limits  (2) <br><br>
+	   SD does not provide manual brake cmds when Autonomous SW is not controlling brakes (overriden, disengaged, Estop) <br><br>
+	   SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing down (e.g. red light, stop sign, etc.) <br><br>
+	   SD does not provide manual brake cmd when emergency vehicle is present <br><br>
+	   SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) <br><br>
+	   SD does not provide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
+	   SD does not provide manual brake command when Autonomous SW is not controlling brakes (overridden, disengaged, Estop) <br><br>
+	   SD does not provide manual brake cmd when Autonomous SW engaged at start of test (will prevent shift to D) <br><br>
+	   SD does not provide manual brake cmd when forward or side collision is imminent <br><br>
+	   SD does not provide manual brake cmd when vehicle does not detect traffic control device that requires slowing (e.g. red light, stop sign, etc.) <br><br>
+	   SD does not provide manual brake cmd when emergency vehicle is present <br><br>
+	   SD does not provide manual brake cmd when vehicle speed exceeds planned test limits <br><br>
+	   SD does not provide required manual brake cmds when Autonomous SW is not controlling brakes. (overridden, disengaged, Estop) <br><br>
+	   SD does not provide manual brake cmd when automated steering is inconsistent with vehicle speed (e.g. about to destabilize vehicle) 
     </td>
     
 	<td class="Providing">

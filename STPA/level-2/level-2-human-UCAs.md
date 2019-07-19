@@ -719,6 +719,7 @@
 
 </table>
 
+* Assumptions
 * (1) Assume all shifting is manual; Apollo can not control shifting
 * (2) Planned test limits not fixed. E.g. speed should decrease before planned turns
 * (3) Manual shifting may be required to maneuver vehicle before or after testing is performed

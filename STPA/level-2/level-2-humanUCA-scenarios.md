@@ -12,9 +12,9 @@
   <tr>
     <td>SD does not provide E-Stop when a manual override is not effective.</td>
     <td class="Basic Scenario #1: Inadequate Controller Behavior">
-	<b># SD does not provide Estop </b>
-	<b># Feedback indicates that manual override is not effective </b>
-	-----
+	<b># SD does not provide Estop </b> <br><br>
+	<b># Feedback indicates that manual override is not effective </b> <br><br>
+	----- <br><br>
       SD is distracted/blacked out/in a state of shock/surprise/etc. <br><br>
       The SD does not know Estop has to be provided when manual override is not effective <br><br>
 		a) … Inaccurate information was spread during driver training, e.g.: <br><br>

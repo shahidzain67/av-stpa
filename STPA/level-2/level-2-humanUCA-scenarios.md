@@ -3,15 +3,15 @@
 <table class="table table-bordered">
   <tr>
     <th>UCA</th>
-    <th>Basic Scenario #1 (Inadequate Controller Behavior) </th>
-    <th>Basic Scenario #2 (Inadequate Feedback/Information) </th>
-    <th>Basic Scenario #3 (Inadequate Control Execution) </th>
-    <th>Basic Scenario #4 (Inadequate Process Behavior) </th>
+    <th>Basic Scenario #1: Inadequate Controller Behavior </th>
+    <th>Basic Scenario #2: Inadequate Feedback/Information </th>
+    <th>Basic Scenario #3: Inadequate Control Execution </th>
+    <th>Basic Scenario #4: Inadequate Process Behavior </th>
   </tr>
 
   <tr>
     <td>SD does not provide E-Stop when a manual override is not effective.</td>
-    <td class="Basic Scenario #1 (Inadequate Controller Behavior)">
+    <td class="Basic Scenario #1: Inadequate Controller Behavior">
 	<b># SD does not provide Estop </b>
 	<b># Feedback indicates that manual override is not effective </b>
 	-----
@@ -38,7 +38,7 @@
 			c2) ... SD receives outdated feedback that manual override was effective (e.g. feedback delayed in transmission, etc.) <br><br>
 			d) ... there is no feedback on the effectiveness of manual overrides foreseen in the system design (e.g. SD believes autonomy was disabled due to manual braking cmds…) <br><br>
     </td>
-    <td class="Basic Scenario #2 (Inadequate Feedback/Information)">
+    <td class="Basic Scenario #2: Inadequate Feedback/Information">
 	<b># Manual override is not effective </br>
 	<b># Feedback to SD indicates manual override is effective </br>
 	-----
@@ -49,7 +49,7 @@
 			c2) ... SD receives outdated feedback that manual override was effective (e.g. feedback delayed in transmission, etc.)
 			d) ... there is no feedback on the effectiveness of manual overrides foreseen in the system design (e.g. SD believes autonomy was disabled due to manual braking cmds…)
     </td>
-    <td class="Basic Scenario #3 (Inadequate Control Execution)">
+    <td class="Basic Scenario #3: Inadequate Control Execution">
 	<b># SD provides Estop </b>
 	<b># Estop is not executed </b>
 	-----
@@ -60,7 +60,7 @@
     -----
 		None
 	</td>
-    <td class="Basic Scenario #4 (Inadequate Process Behavior)">
+    <td class="Basic Scenario #4: Inadequate Process Behavior">
 	<b># SD provides Estop and Estop is executed </b>
 	<b># vehicle still follows commands by autonomous SW </b>
 	-----

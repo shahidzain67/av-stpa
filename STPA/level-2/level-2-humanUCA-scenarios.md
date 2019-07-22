@@ -3,10 +3,10 @@
 <table class="table table-bordered">
   <tr>
     <th>UCA</th>
-    <th>Basic Scenario #1: Inadequate Controller Behavior </th>
-    <th>Basic Scenario #2: Inadequate Feedback/Information </th>
-    <th>Basic Scenario #3: Inadequate Control Execution </th>
-    <th>Basic Scenario #4: Inadequate Process Behavior </th>
+    <th>Basic Scenario #1: <br><br> Inadequate Controller Behavior </th>
+    <th>Basic Scenario #2: <br><br> Inadequate Feedback/Information </th>
+    <th>Basic Scenario #3: <br><br> Inadequate Control Execution </th>
+    <th>Basic Scenario #4: <br><br> Inadequate Process Behavior </th>
   </tr>
 
   <tr>
